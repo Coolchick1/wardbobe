@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mywardrobeprogram.dao.WardrobeDao;
 import mywardrobeprogram.model.Brand;
+import mywardrobeprogram.model.Clothing;
 
 /**
  *
@@ -192,8 +193,26 @@ public class AddingFrame extends javax.swing.JFrame {
                 itemTypeTxt.getText(),
                 sizeComboBox.getSelectedItem().toString(),
                 colourTxt.getText(),
+                brandComboBox.getSelectedItem().toString(),
                 styleTxt.getText()
             });
+            
+            Brand selectedBrand = (Brand) brandComboBox.getModel().getSelectedItem();
+            Clothing newItem = new Clothing();
+            newItem.setBrandID(selectedBrand.getId());
+            newItem.setSize(sizeComboBox.getSelectedItem().toString());
+            newItem.setStyle(styleTxt.getText());
+            newItem.setColour(colourTxt.getText());
+            newItem.setType(itemTypeTxt.getText());
+            newItem.setUserID(1);
+            try{
+                WardrobeDao.getInstance().addWardrobeItem(newItem);
+            }catch (SQLException sqle){
+                JOptionPane.showMessageDialog(this, "Unable to save new item of clothing");
+                sqle.printStackTrace();
+            }
+            
+            
         }
 
     }//GEN-LAST:event_addButtonActionPerformed
