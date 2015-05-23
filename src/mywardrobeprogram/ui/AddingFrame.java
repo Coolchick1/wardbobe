@@ -5,13 +5,18 @@
  */
 package mywardrobeprogram.ui;
 
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import mywardrobeprogram.dao.WardrobeDao;
+import mywardrobeprogram.model.Brand;
 
 /**
  *
- * @author Richard Luiz
+ * @author Natalia Luiz
  */
 public class AddingFrame extends javax.swing.JFrame {
 
@@ -20,6 +25,18 @@ public class AddingFrame extends javax.swing.JFrame {
      */
     public AddingFrame() {
         initComponents();
+        try {
+            List<Brand> brands = WardrobeDao.getInstance().getAllBrands();
+
+            DefaultComboBoxModel model = new DefaultComboBoxModel();
+            for (Brand currentBrand : brands) {
+                model.addElement(currentBrand);
+            }
+
+            brandComboBox.setModel(model);
+        } catch (SQLException sqlE) {
+            JOptionPane.showMessageDialog(this, "Unable to retrieve brands from the db.");
+        }
     }
 
     /**
@@ -37,17 +54,15 @@ public class AddingFrame extends javax.swing.JFrame {
         sizeLabel = new javax.swing.JLabel();
         colourLabel = new javax.swing.JLabel();
         brandIDLabel = new javax.swing.JLabel();
-        userIDLabel = new javax.swing.JLabel();
         styleLabel = new javax.swing.JLabel();
         itemTypeTxt = new javax.swing.JTextField();
         colourTxt = new javax.swing.JTextField();
-        brandIDTxt = new javax.swing.JTextField();
-        userIDTxt = new javax.swing.JTextField();
         styleTxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         addButton = new javax.swing.JButton();
         sizeComboBox = new javax.swing.JComboBox();
         messageLabel = new javax.swing.JLabel();
+        brandComboBox = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,9 +82,7 @@ public class AddingFrame extends javax.swing.JFrame {
 
         colourLabel.setText("Colour");
 
-        brandIDLabel.setText("Brand ID");
-
-        userIDLabel.setText("User ID");
+        brandIDLabel.setText("Brand");
 
         styleLabel.setText("Style");
 
@@ -94,35 +107,38 @@ public class AddingFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(itemTypeLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(itemTypeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(styleLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(userIDLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(brandIDLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(colourLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(sizeLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(colourTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
-                                            .addComponent(brandIDTxt)
-                                            .addComponent(userIDTxt)
-                                            .addComponent(styleTxt)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(204, 204, 204)
-                                        .addComponent(sizeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(56, 56, 56)
-                                .addComponent(messageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)))
-                        .addGap(34, 34, 34)
-                        .addComponent(addButton)
-                        .addGap(30, 30, 30))
+                                .addComponent(messageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(styleLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(brandIDLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(colourLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(sizeLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(209, 209, 209)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(sizeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(colourTxt)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(207, 207, 207)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(addButton)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(styleTxt)
+                                                        .addComponent(brandComboBox, 0, 193, Short.MAX_VALUE)))
+                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(itemTypeLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(itemTypeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(76, 76, 76)))
+                        .addGap(115, 115, 115))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 517, Short.MAX_VALUE))))
@@ -146,23 +162,20 @@ public class AddingFrame extends javax.swing.JFrame {
                     .addComponent(colourTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(brandIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(brandIDLabel))
+                    .addComponent(brandIDLabel)
+                    .addComponent(brandComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userIDLabel)
-                    .addComponent(userIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(styleLabel)
-                    .addComponent(styleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addButton))
+                    .addComponent(styleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                         .addComponent(messageLabel)
                         .addGap(131, 131, 131))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(addButton)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -179,7 +192,6 @@ public class AddingFrame extends javax.swing.JFrame {
                 itemTypeTxt.getText(),
                 sizeComboBox.getSelectedItem().toString(),
                 colourTxt.getText(),
-                brandIDTxt.getText(),
                 styleTxt.getText()
             });
         }
@@ -187,7 +199,6 @@ public class AddingFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addButtonActionPerformed
     boolean validateClothingValues() {
         String itemType = itemTypeTxt.getText();
-        String brandID = brandIDTxt.getText();
         String size = sizeComboBox.getSelectedItem().toString();
         String style = styleTxt.getText();
         String colour = colourTxt.getText();
@@ -196,7 +207,6 @@ public class AddingFrame extends javax.swing.JFrame {
 
         Object[][] values = {
             {itemType, itemTypeTxt},
-            {brandID, brandIDTxt},
             {size, sizeComboBox},
             {style, styleTxt},
             {colour, colourTxt}
@@ -251,8 +261,8 @@ public class AddingFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JComboBox brandComboBox;
     private javax.swing.JLabel brandIDLabel;
-    private javax.swing.JTextField brandIDTxt;
     private javax.swing.JLabel colourLabel;
     private javax.swing.JTextField colourTxt;
     private javax.swing.JLabel itemTypeLabel;
@@ -265,7 +275,5 @@ public class AddingFrame extends javax.swing.JFrame {
     private javax.swing.JLabel styleLabel;
     private javax.swing.JTextField styleTxt;
     private javax.swing.JTable tblClothing;
-    private javax.swing.JLabel userIDLabel;
-    private javax.swing.JTextField userIDTxt;
     // End of variables declaration//GEN-END:variables
 }
