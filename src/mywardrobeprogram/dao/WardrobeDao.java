@@ -1,14 +1,15 @@
 package mywardrobeprogram.dao;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import mywardrobeprogram.model.Brand;
 import mywardrobeprogram.model.User;
 
 /**
@@ -31,6 +32,16 @@ public class WardrobeDao {
             = "   INSERT INTO "
             + "     Users(name, surname, username, password) "
             + " VALUES(?, ?, ?, ?)";
+    private static final String GET_ALL_BRANDS_QUERY=
+            "   SELECT "
+            + "     brandID, "
+            + "     brandName, "
+            + "     reccommended, "
+            + "     shoppingMall "
+            + " FROM "
+            + "     Brands ";
+    
+            
 
     private static final String PROP_URL = "jdbc.url";
     private static final String PROP_USERNAME = "jdbc.username";
@@ -104,5 +115,21 @@ public class WardrobeDao {
         rs.close();
 
         return user;
+    }
+    public List<Brand> getAllBrands ()throws SQLException{
+        PreparedStatement statement = wardrobeConnection.prepareStatement(GET_ALL_BRANDS_QUERY);
+        ResultSet rs = statement.executeQuery();
+        List <Brand> allBrands = new ArrayList<>();
+        while (rs.next()){
+            Brand brand =  new Brand ();
+            brand.setId (rs.getInt("brandID"));
+            brand.setName(rs.getString("brandName"));
+            brand.setShoppingMall(rs.getString("shoppingMall"));
+            brand.setRecommeneded(rs.getBoolean("reccommended"));
+            
+            allBrands.add(brand);
+        }
+        rs.close();
+        return allBrands;
     }
 }
