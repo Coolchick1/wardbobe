@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import mywardrobeprogram.model.Brand;
+import mywardrobeprogram.model.Clothing;
 import mywardrobeprogram.model.User;
 
 /**
@@ -40,6 +41,11 @@ public class WardrobeDao {
             + "     shoppingMall "
             + " FROM "
             + "     Brands ";
+    private static final String INSERT_NEW_ITEM_OF_CLOTHING=
+            "INSERT INTO "
+            + " Clothing(itemType, size, colour, brandID, userID, style) "
+            + "VALUES(?, ?, ?, ?, ?, ?) ";
+           
     
             
 
@@ -132,4 +138,15 @@ public class WardrobeDao {
         rs.close();
         return allBrands;
     }
+    public void addWardrobeItem (Clothing newClothingItem)throws SQLException{
+        PreparedStatement statement = wardrobeConnection.prepareStatement(INSERT_NEW_ITEM_OF_CLOTHING);
+        statement.setString(1, newClothingItem.getType());
+        statement.setString(2, newClothingItem.getSize());
+        statement.setString(3, newClothingItem.getColour());
+        statement.setInt(4, newClothingItem.getBrandID());
+        statement.setInt(5, newClothingItem.getUserID());
+        statement.setString(6, newClothingItem.getStyle());
+        statement.executeUpdate();
+    }
+            
 }
