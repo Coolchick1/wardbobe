@@ -11,7 +11,7 @@ import mywardrobeprogram.model.User;
 
 /**
  *
- * @author Richard Luiz
+ * @author Natalia Luiz
  */
 public class LoginForm extends javax.swing.JFrame {
 
