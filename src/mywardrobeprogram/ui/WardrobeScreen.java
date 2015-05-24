@@ -30,6 +30,9 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         
         registerUI = new RegisterForm();
         registerUI.setVisible(false);
+        loginUI = new LoginForm();
+        loginUI.setVisible(false);
+       
         
         this.addWindowListener(this);
         
@@ -56,6 +59,7 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         jMenuBar1 = new javax.swing.JMenuBar();
         accountMenu = new javax.swing.JMenu();
         registerItem = new javax.swing.JMenuItem();
+        LoginMenueItem = new javax.swing.JMenuItem();
         wardrobeMenu = new javax.swing.JMenu();
         userHelp = new javax.swing.JMenu();
         exitProgram = new javax.swing.JMenu();
@@ -86,6 +90,14 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         });
         accountMenu.add(registerItem);
 
+        LoginMenueItem.setText("Login");
+        LoginMenueItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginMenueItemActionPerformed(evt);
+            }
+        });
+        accountMenu.add(LoginMenueItem);
+
         jMenuBar1.add(accountMenu);
 
         wardrobeMenu.setText("Wardrobe");
@@ -111,6 +123,7 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerItemActionPerformed
@@ -120,6 +133,10 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
+
+    private void LoginMenueItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginMenueItemActionPerformed
+        loginUI.setVisible(true);
+    }//GEN-LAST:event_LoginMenueItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,6 +209,7 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem LoginMenueItem;
     private javax.swing.JMenu accountMenu;
     private javax.swing.JMenu exitProgram;
     private javax.swing.JMenu jMenu1;
