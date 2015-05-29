@@ -46,7 +46,21 @@ public class WardrobeDao {
             + " Clothing(itemType, size, colour, brandID, userID, style) "
             + "VALUES(?, ?, ?, ?, ?, ?) ";
            
-    
+   private static final String FIND_CLOTHING_BY_USERID=
+           "SELECT "
+           + " ID, "
+           + " itemType,"
+           + " size,"
+           + " colour,"
+           + " brandID, "
+           + " userID, "
+           + " style "
+           + "FROM "
+           + "  Clothing "
+           + "WHERE"
+           + "  USERID = ? ";
+           
+            
             
 
     private static final String PROP_URL = "jdbc.url";
@@ -148,5 +162,32 @@ public class WardrobeDao {
         statement.setString(6, newClothingItem.getStyle());
         statement.executeUpdate();
     }
-            
+    public List <Clothing> findClothingByUserId (Integer userId) throws SQLException {
+        PreparedStatement statement = wardrobeConnection.prepareStatement(FIND_CLOTHING_BY_USERID);
+        statement.setInt(1, userId);
+        
+        List <Clothing> usersClothing = new ArrayList<>();
+        
+        try(ResultSet rs = statement.executeQuery()) {
+            while (rs.next()){
+                Clothing item = new Clothing ();
+                item.setId(rs.getInt("Id"));
+                item.setSize(rs.getString("size"));
+                item.setColour(rs.getString("colour"));
+                item.setBrandID(rs.getInt("BrandID"));
+                item.setUserID(rs.getInt("UserID"));
+                item.setStyle(rs.getString("Style"));
+                item.setType(rs.getString("Type"));
+
+                usersClothing.add(item);
+            }
+        } catch(SQLException sqle) {
+            System.err.println("Unable to process the resultset");
+            sqle.printStackTrace();
+
+            throw sqle;
+        }
+        
+        return usersClothing;
+    }         
 }
