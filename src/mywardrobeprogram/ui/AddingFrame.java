@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import mywardrobeprogram.dao.WardrobeDao;
 import mywardrobeprogram.model.Brand;
 import mywardrobeprogram.model.Clothing;
+import mywardrobeprogram.ui.listener.FormWindowListener;
 
 /**
  *
@@ -26,6 +27,7 @@ public class AddingFrame extends javax.swing.JFrame {
      */
     public AddingFrame() {
         initComponents();
+        addWindowListener(new FormWindowListener());
         try {
             List<Brand> brands = WardrobeDao.getInstance().getAllBrands();
 
@@ -205,6 +207,7 @@ public class AddingFrame extends javax.swing.JFrame {
             newItem.setColour(colourTxt.getText());
             newItem.setType(itemTypeTxt.getText());
             newItem.setUserID(1);
+            
             try{
                 WardrobeDao.getInstance().addWardrobeItem(newItem);
             }catch (SQLException sqle){
