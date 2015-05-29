@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import mywardrobeprogram.dao.WardrobeDao;
 import mywardrobeprogram.model.User;
+import mywardrobeprogram.ui.listener.FormWindowListener;
 
 /**
  *
@@ -18,6 +19,7 @@ public class RegisterForm extends javax.swing.JFrame {
      */
     public RegisterForm() {
         initComponents();
+        addWindowListener(new FormWindowListener());
     }
 
     /**
@@ -141,6 +143,7 @@ public class RegisterForm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void firstNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTxtActionPerformed
