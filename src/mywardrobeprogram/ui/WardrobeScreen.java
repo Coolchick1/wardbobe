@@ -32,7 +32,8 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         registerUI.setVisible(false);
         loginUI = new LoginForm();
         loginUI.setVisible(false);
-       
+        
+        
         
         this.addWindowListener(this);
         
@@ -127,6 +128,7 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerItemActionPerformed
+        registerUI.requestFocus();
         registerUI.setVisible(true);
     }//GEN-LAST:event_registerItemActionPerformed
 
@@ -135,6 +137,7 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
     }//GEN-LAST:event_formWindowClosed
 
     private void LoginMenueItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginMenueItemActionPerformed
+        loginUI.requestFocus();
         loginUI.setVisible(true);
     }//GEN-LAST:event_LoginMenueItemActionPerformed
 
@@ -175,37 +178,30 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
 
     @Override
     public void windowOpened(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowClosing(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowClosed(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowIconified(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowDeiconified(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowActivated(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowDeactivated(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
