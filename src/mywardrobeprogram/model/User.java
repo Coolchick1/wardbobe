@@ -8,7 +8,7 @@ package mywardrobeprogram.model;
 
 /**
  *
- * @author Richard Luiz
+ * @author Natalia Luiz
  */
 public class User {
     private Integer id;
