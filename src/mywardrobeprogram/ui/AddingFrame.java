@@ -185,7 +185,7 @@ public class AddingFrame extends javax.swing.JDialog {
             newItem.setStyle(styleTxt.getText());
             newItem.setColour(colourTxt.getText());
             newItem.setType(itemTypeTxt.getText());
-            newItem.setUserID(1);
+            newItem.setUserID(LoginForm.loggedInUser.getId());
             
             try{
                 WardrobeDao.getInstance().addWardrobeItem(newItem);
