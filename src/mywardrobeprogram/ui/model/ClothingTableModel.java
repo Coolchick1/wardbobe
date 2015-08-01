@@ -72,4 +72,8 @@ public class ClothingTableModel extends AbstractTableModel{
     public List<Clothing> getItems() {
         return items;
     }
+    
+    public Clothing getSelected (int row ){
+        return items.get(row);
+    }
 }
