@@ -33,35 +33,43 @@ public class WardrobeDao {
             = "   INSERT INTO "
             + "     Users(name, surname, username, password) "
             + " VALUES(?, ?, ?, ?)";
-    private static final String GET_ALL_BRANDS_QUERY=
-            "   SELECT "
+    private static final String GET_ALL_BRANDS_QUERY
+            = "   SELECT "
             + "     brandID, "
             + "     brandName, "
             + "     reccommended, "
             + "     shoppingMall "
             + " FROM "
             + "     Brands ";
-    private static final String INSERT_NEW_ITEM_OF_CLOTHING=
-            "INSERT INTO "
+    private static final String INSERT_NEW_ITEM_OF_CLOTHING
+            = "INSERT INTO "
             + " Clothing(itemType, size, colour, brandID, userID, style) "
             + "VALUES(?, ?, ?, ?, ?, ?) ";
-           
-   private static final String FIND_CLOTHING_BY_USERID=
-           "SELECT "
-           + " ID, "
-           + " itemType,"
-           + " size,"
-           + " colour,"
-           + " brandID, "
-           + " userID, "
-           + " style "
-           + "FROM "
-           + "  Clothing "
-           + "WHERE"
-           + "  USERID = ? ";
-           
-            
-            
+
+    private static final String FIND_CLOTHING_BY_USERID
+            = "SELECT "
+            + " ID, "
+            + " itemType,"
+            + " size,"
+            + " colour,"
+            + " brandID, "
+            + " userID, "
+            + " style "
+            + "FROM "
+            + "  Clothing "
+            + "WHERE"
+            + "  USERID = ? ";
+
+    private static final String FIND_BRAND_BY_ID
+            = "SELECT "
+            + "  brandID,"
+            + "  brandName,"
+            + "  reccommended,"
+            + "  shoppingMall "
+            + "FROM "
+            + "  Brands "
+            + "WHERE "
+            + "  BrandID = ?";
 
     private static final String PROP_URL = "jdbc.url";
     private static final String PROP_USERNAME = "jdbc.username";
@@ -90,7 +98,7 @@ public class WardrobeDao {
         }
     }
 
-    public static WardrobeDao getInstance() throws SQLException{
+    public static WardrobeDao getInstance() throws SQLException {
         if (instance != null) {
             return instance;
         }
@@ -136,23 +144,25 @@ public class WardrobeDao {
 
         return user;
     }
-    public List<Brand> getAllBrands ()throws SQLException{
+
+    public List<Brand> getAllBrands() throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(GET_ALL_BRANDS_QUERY);
         ResultSet rs = statement.executeQuery();
-        List <Brand> allBrands = new ArrayList<>();
-        while (rs.next()){
-            Brand brand =  new Brand ();
-            brand.setId (rs.getInt("brandID"));
+        List<Brand> allBrands = new ArrayList<>();
+        while (rs.next()) {
+            Brand brand = new Brand();
+            brand.setId(rs.getInt("brandID"));
             brand.setName(rs.getString("brandName"));
             brand.setShoppingMall(rs.getString("shoppingMall"));
             brand.setRecommeneded(rs.getBoolean("reccommended"));
-            
+
             allBrands.add(brand);
         }
         rs.close();
         return allBrands;
     }
-    public void addWardrobeItem (Clothing newClothingItem)throws SQLException{
+
+    public void addWardrobeItem(Clothing newClothingItem) throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(INSERT_NEW_ITEM_OF_CLOTHING);
         statement.setString(1, newClothingItem.getType());
         statement.setString(2, newClothingItem.getSize());
@@ -162,32 +172,51 @@ public class WardrobeDao {
         statement.setString(6, newClothingItem.getStyle());
         statement.executeUpdate();
     }
-    public List <Clothing> findClothingByUserId (Integer userId) throws SQLException {
+
+    public List<Clothing> findClothingByUserId(Integer userId) throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(FIND_CLOTHING_BY_USERID);
         statement.setInt(1, userId);
-        
-        List <Clothing> usersClothing = new ArrayList<>();
-        
-        try(ResultSet rs = statement.executeQuery()) {
-            while (rs.next()){
-                Clothing item = new Clothing ();
+
+        List<Clothing> usersClothing = new ArrayList<>();
+
+        try (ResultSet rs = statement.executeQuery()) {
+            while (rs.next()) {
+                Clothing item = new Clothing();
                 item.setId(rs.getInt("Id"));
                 item.setSize(rs.getString("size"));
                 item.setColour(rs.getString("colour"));
                 item.setBrandID(rs.getInt("BrandID"));
                 item.setUserID(rs.getInt("UserID"));
                 item.setStyle(rs.getString("Style"));
-                item.setType(rs.getString("Type"));
+                item.setType(rs.getString("itemType"));
 
                 usersClothing.add(item);
             }
-        } catch(SQLException sqle) {
+        } catch (SQLException sqle) {
             System.err.println("Unable to process the resultset");
             sqle.printStackTrace();
 
             throw sqle;
         }
-        
+
         return usersClothing;
-    }         
+    }
+
+    public Brand findBrandByID(Integer id) throws SQLException {
+        PreparedStatement statement = wardrobeConnection.prepareStatement(FIND_BRAND_BY_ID);
+        statement.setInt(1, id);
+
+        Brand response = null;
+        try (ResultSet rs = statement.executeQuery()) {
+            while (rs.next()) {
+                response = new Brand();
+                response.setId(rs.getInt("brandID"));
+                response.setName(rs.getString("brandName"));
+                response.setRecommeneded(rs.getBoolean("reccommended"));
+                response.setShoppingMall(rs.getString("shoppingMall"));
+
+            }
+        }
+        return response;
+    }
 }
