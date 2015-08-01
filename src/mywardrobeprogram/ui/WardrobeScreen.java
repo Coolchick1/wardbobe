@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package mywardrobeprogram.ui;
 
 import java.awt.BorderLayout;
@@ -21,31 +20,28 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
 
     private RegisterForm registerUI;
     private LoginForm loginUI;
-    private AddingFrame addingUI;
-    
+    private ViewMyProfile viewUI;
+
     /**
      * Creates new form MenuBarTest
      */
     public WardrobeScreen() {
         initComponents();
-        
+
         registerUI = new RegisterForm();
         registerUI.setVisible(false);
         loginUI = new LoginForm(this);
         loginUI.setVisible(false);
-        registerItem.setEnabled(false);
-        addingMenueItem.setEnabled(false);
-        addingUI = new AddingFrame();
-        addingUI.setVisible(false);
-        
-        
-        
-        
+        registerItem.setEnabled(true);
+        viewUI = new ViewMyProfile();
+        viewUI.setVisible(false);
+        ViewMyProfileMenuItem.setEnabled(false);
+
         this.addWindowListener(this);
-        
+
         JPanel image = new ImagePanel(new ImageIcon(getClass().getResource("fitted-sliding-wardrobe-pink-white-glass-bedroom-thumb.png")).getImage());
         add(image);
-        
+
         repaint();
         pack();
     }
@@ -68,7 +64,7 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         registerItem = new javax.swing.JMenuItem();
         LoginMenueItem = new javax.swing.JMenuItem();
         wardrobeMenu = new javax.swing.JMenu();
-        addingMenueItem = new javax.swing.JMenuItem();
+        ViewMyProfileMenuItem = new javax.swing.JMenuItem();
         userHelp = new javax.swing.JMenu();
         exitProgram = new javax.swing.JMenu();
 
@@ -110,13 +106,13 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
 
         wardrobeMenu.setText("Wardrobe");
 
-        addingMenueItem.setText("Add Clothing items");
-        addingMenueItem.addActionListener(new java.awt.event.ActionListener() {
+        ViewMyProfileMenuItem.setText("View my Profile");
+        ViewMyProfileMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addingMenueItemActionPerformed(evt);
+                ViewMyProfileMenuItemActionPerformed(evt);
             }
         });
-        wardrobeMenu.add(addingMenueItem);
+        wardrobeMenu.add(ViewMyProfileMenuItem);
 
         jMenuBar1.add(wardrobeMenu);
 
@@ -157,14 +153,16 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         loginUI.setVisible(true);
     }//GEN-LAST:event_LoginMenueItemActionPerformed
 
-    private void addingMenueItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addingMenueItemActionPerformed
-        addingUI.requestFocus();
-        addingUI.setVisible(true);
-    }//GEN-LAST:event_addingMenueItemActionPerformed
-    public void enableMenuItems (){
-        addingMenueItem.setEnabled(true);
+    private void ViewMyProfileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewMyProfileMenuItemActionPerformed
+        viewUI.refreshData();
+        viewUI.requestFocus();
+        viewUI.setVisible(true);
+    }//GEN-LAST:event_ViewMyProfileMenuItemActionPerformed
+    public void enableMenuItems() {
         registerItem.setEnabled(true);
-    } 
+        ViewMyProfileMenuItem.setEnabled(true);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -230,8 +228,8 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem LoginMenueItem;
+    private javax.swing.JMenuItem ViewMyProfileMenuItem;
     private javax.swing.JMenu accountMenu;
-    private javax.swing.JMenuItem addingMenueItem;
     private javax.swing.JMenu exitProgram;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
