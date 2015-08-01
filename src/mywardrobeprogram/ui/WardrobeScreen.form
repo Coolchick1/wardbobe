@@ -55,12 +55,12 @@
             <Property name="text" type="java.lang.String" value="Wardrobe"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="addingMenueItem">
+            <MenuItem class="javax.swing.JMenuItem" name="ViewMyProfileMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Add Clothing items"/>
+                <Property name="text" type="java.lang.String" value="View my Profile"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addingMenueItemActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewMyProfileMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
