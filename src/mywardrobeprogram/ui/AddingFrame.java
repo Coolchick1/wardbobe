@@ -5,12 +5,13 @@
  */
 package mywardrobeprogram.ui;
 
+import java.awt.Frame;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import mywardrobeprogram.dao.WardrobeDao;
 import mywardrobeprogram.model.Brand;
 import mywardrobeprogram.model.Clothing;
@@ -20,13 +21,15 @@ import mywardrobeprogram.ui.listener.FormWindowListener;
  *
  * @author Natalia Luiz
  */
-public class AddingFrame extends javax.swing.JFrame {
+public class AddingFrame extends javax.swing.JDialog {
 
     /**
      * Creates new form AdingFrame
      */
-    public AddingFrame() {
+    public AddingFrame(Frame parent) {
+        super(parent, true);
         initComponents();
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new FormWindowListener());
         try {
             List<Brand> brands = WardrobeDao.getInstance().getAllBrands();
@@ -51,8 +54,6 @@ public class AddingFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblClothing = new javax.swing.JTable();
         itemTypeLabel = new javax.swing.JLabel();
         sizeLabel = new javax.swing.JLabel();
         colourLabel = new javax.swing.JLabel();
@@ -67,17 +68,7 @@ public class AddingFrame extends javax.swing.JFrame {
         messageLabel = new javax.swing.JLabel();
         brandComboBox = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        tblClothing.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Item Type", "Size", "Colour", "BrandID", "Style"
-            }
-        ));
-        jScrollPane1.setViewportView(tblClothing);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         itemTypeLabel.setText("Item Type");
 
@@ -110,9 +101,7 @@ public class AddingFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(56, 56, 56)
+                                .addGap(486, 486, 486)
                                 .addComponent(messageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -179,8 +168,6 @@ public class AddingFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addComponent(addButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -190,14 +177,6 @@ public class AddingFrame extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         boolean validData = validateClothingValues();
         if (validData) {
-            DefaultTableModel model = (DefaultTableModel) tblClothing.getModel();
-            model.addRow(new Object[]{
-                itemTypeTxt.getText(),
-                sizeComboBox.getSelectedItem().toString(),
-                colourTxt.getText(),
-                brandComboBox.getSelectedItem().toString(),
-                styleTxt.getText()
-            });
             
             Brand selectedBrand = (Brand) brandComboBox.getModel().getSelectedItem();
             Clothing newItem = new Clothing();
@@ -214,7 +193,7 @@ public class AddingFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Unable to save new item of clothing");
                 sqle.printStackTrace();
             }
-            
+            setVisible(false);
             
         }
 
@@ -246,40 +225,7 @@ public class AddingFrame extends javax.swing.JFrame {
         return valid;
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddingFrame().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
@@ -290,12 +236,10 @@ public class AddingFrame extends javax.swing.JFrame {
     private javax.swing.JLabel itemTypeLabel;
     private javax.swing.JTextField itemTypeTxt;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel messageLabel;
     private javax.swing.JComboBox sizeComboBox;
     private javax.swing.JLabel sizeLabel;
     private javax.swing.JLabel styleLabel;
     private javax.swing.JTextField styleTxt;
-    private javax.swing.JTable tblClothing;
     // End of variables declaration//GEN-END:variables
 }
