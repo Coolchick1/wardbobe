@@ -6,9 +6,11 @@
 package mywardrobeprogram.ui;
 
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import mywardrobeprogram.dao.WardrobeDao;
 import mywardrobeprogram.model.User;
+import mywardrobeprogram.ui.listener.FormWindowListener;
 
 /**
  *
@@ -16,12 +18,18 @@ import mywardrobeprogram.model.User;
  */
 public class LoginForm extends javax.swing.JFrame {
     private WardrobeScreen parent;
+    
+    public static User loggedInUser;
+    
+    
     /**
      * Creates new form LoginForm
      */
     public LoginForm(WardrobeScreen parent) {
         this.parent = parent; 
         initComponents();
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new FormWindowListener() );
     }
 
     /**
@@ -109,11 +117,15 @@ public class LoginForm extends javax.swing.JFrame {
                     parent.enableMenuItems();
                     parent.requestFocus();
                     setVisible(false);
+                    
+                    loggedInUser = user;
                 } else {
+                    loggedInUser = null;
                     System.err.println("Passwords don't match ");
                     JOptionPane.showMessageDialog(null, "Passwords don't match");
                 }
             }else {
+                loggedInUser = null;
                 System.err.println("Invalid username");
                 JOptionPane.showMessageDialog(null, "Invaild username");
             }
