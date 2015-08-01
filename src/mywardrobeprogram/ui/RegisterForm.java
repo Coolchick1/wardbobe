@@ -3,6 +3,7 @@ package mywardrobeprogram.ui;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import mywardrobeprogram.dao.WardrobeDao;
 import mywardrobeprogram.model.User;
@@ -20,6 +21,7 @@ public class RegisterForm extends javax.swing.JFrame {
     public RegisterForm() {
         initComponents();
         addWindowListener(new FormWindowListener());
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
     /**
