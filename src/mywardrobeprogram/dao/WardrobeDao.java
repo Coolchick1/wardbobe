@@ -14,7 +14,7 @@ import mywardrobeprogram.model.Clothing;
 import mywardrobeprogram.model.User;
 
 /**
- *
+ * 
  * @author Natalia Luiz
  */
 public class WardrobeDao {
@@ -37,7 +37,7 @@ public class WardrobeDao {
             = "   SELECT "
             + "     brandID, "
             + "     brandName, "
-            + "     reccommended, "
+            + "     recommended, "
             + "     shoppingMall "
             + " FROM "
             + "     Brands ";
@@ -64,13 +64,32 @@ public class WardrobeDao {
             = "SELECT "
             + "  brandID,"
             + "  brandName,"
-            + "  reccommended,"
+            + "  recommended,"
             + "  shoppingMall "
             + "FROM "
             + "  Brands "
             + "WHERE "
             + "  BrandID = ?";
-
+    
+    private static final String DELETE_CLOTHING_BY_ID
+            = "DELETE FROM Clothing WHERE ID = ? ";
+    private static final String UPDATE_ITEM_OF_CLOTHING_BY_ID
+            = "UPDATE CLOTHING SET itemType = ?, size = ?, colour = ?, brandID = ?, userID = ?, style = ?"
+            + " WHERE ID = ? ";
+    
+    private static final String ADD_NEW_BRAND =
+            "INSERT INTO Brands(brandName,recommended,shoppingMall)"
+            + " VALUES(?,?,?)" ;
+    private static final String DELETE_BRAND_BY_ID =
+            "DELETE FROM Brands WHERE BRANDID = ?";
+    
+    private static final String UPDATE_BRAND_BY_ID
+            = "UPDATE BRANDS SET "
+            + "brandName = ?,"
+            + "recommended = ?,"
+            + "shoppingMall = ? "
+            + "WHERE BrandID = ? ";
+            
     private static final String PROP_URL = "jdbc.url";
     private static final String PROP_USERNAME = "jdbc.username";
     private static final String PROP_PASSWORD = "jdbc.password";
@@ -154,7 +173,7 @@ public class WardrobeDao {
             brand.setId(rs.getInt("brandID"));
             brand.setName(rs.getString("brandName"));
             brand.setShoppingMall(rs.getString("shoppingMall"));
-            brand.setRecommeneded(rs.getBoolean("reccommended"));
+            brand.setRecommeneded(rs.getString("recommended"));
 
             allBrands.add(brand);
         }
@@ -173,6 +192,15 @@ public class WardrobeDao {
         statement.executeUpdate();
     }
 
+    /**
+     * This retrieval method allows us to find a list of the users clothing in their wardrobe.
+     * 
+     * @param userId The id relating to the users primary key in the database
+     * 
+     * @return List of clothing items returned.
+     * 
+     * @throws SQLException Database unavailable
+     */
     public List<Clothing> findClothingByUserId(Integer userId) throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(FIND_CLOTHING_BY_USERID);
         statement.setInt(1, userId);
@@ -212,11 +240,52 @@ public class WardrobeDao {
                 response = new Brand();
                 response.setId(rs.getInt("brandID"));
                 response.setName(rs.getString("brandName"));
-                response.setRecommeneded(rs.getBoolean("reccommended"));
+                response.setRecommeneded(rs.getString("recommended"));
                 response.setShoppingMall(rs.getString("shoppingMall"));
 
             }
         }
         return response;
+    }
+    public void deleteClothingByID (int id)throws SQLException{
+        PreparedStatement statement = wardrobeConnection.prepareStatement(DELETE_CLOTHING_BY_ID);
+        statement.setInt(1, id);
+        statement.execute();
+        
+        
+                
+    }
+    
+    public void updateClothing(Clothing updatedItem) throws SQLException {
+        PreparedStatement statement = wardrobeConnection.prepareStatement(UPDATE_ITEM_OF_CLOTHING_BY_ID);
+        statement.setString(1, updatedItem.getType());
+        statement.setString(2, updatedItem.getSize());
+        statement.setString(3, updatedItem.getColour());
+        statement.setInt (4, updatedItem.getBrandID());
+        statement.setInt (5,updatedItem.getUserID());
+        statement.setString(6, updatedItem.getStyle());
+        statement.setInt(7, updatedItem.getId());
+        statement.execute();
+    }
+    public void addBrand (Brand newBrand) throws SQLException { 
+        PreparedStatement statement = wardrobeConnection.prepareStatement(ADD_NEW_BRAND);
+        statement.setString(1,newBrand.getName());
+        statement.setString(2, newBrand.getRecommeneded());
+        statement.setString(3, newBrand.getShoppingMall());
+        statement.execute();
+    }
+    public void deleteBrandByID (int id) throws SQLException {
+        PreparedStatement statement = wardrobeConnection.prepareStatement(DELETE_BRAND_BY_ID);
+        statement.setInt(1, id);
+        statement.execute();      
+    }
+    public void updateBrand (Brand updatedBrand)throws SQLException {
+        PreparedStatement statement = wardrobeConnection.prepareStatement(UPDATE_BRAND_BY_ID);
+        statement.setString(1, updatedBrand.getName());
+        statement.setString(2, updatedBrand.getRecommeneded());
+        statement.setString(3, updatedBrand.getShoppingMall());
+        statement.setInt(4, updatedBrand.getId());
+        statement.execute();
+          
     }
 }
