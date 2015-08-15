@@ -14,7 +14,7 @@ public class Brand {
     private Integer id;
     private String name;
     private String shoppingMall;
-    private boolean recommeneded;
+    private String recommeneded;
 
     public Brand() {
     }
@@ -43,11 +43,11 @@ public class Brand {
         this.shoppingMall = shoppingMall;
     }
 
-    public boolean isRecommeneded() {
+    public String getRecommeneded() {
         return recommeneded;
     }
 
-    public void setRecommeneded(boolean recommeneded) {
+    public void setRecommeneded(String recommeneded) {
         this.recommeneded = recommeneded;
     }
 
