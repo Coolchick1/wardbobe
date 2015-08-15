@@ -20,7 +20,8 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
 
     private RegisterForm registerUI;
     private LoginForm loginUI;
-    private ViewMyProfile viewUI;
+    private ViewMyWardrobe viewUI;
+    private ViewBrandsFrame brandsUI;
 
     /**
      * Creates new form MenuBarTest
@@ -33,9 +34,12 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         loginUI = new LoginForm(this);
         loginUI.setVisible(false);
         registerItem.setEnabled(true);
-        viewUI = new ViewMyProfile();
+        viewUI = new ViewMyWardrobe();
         viewUI.setVisible(false);
         ViewMyProfileMenuItem.setEnabled(false);
+        brandsUI = new ViewBrandsFrame();
+        brandsUI.setVisible(false);
+        wardrobeMenu.setEnabled(false);
 
         this.addWindowListener(this);
 
@@ -63,10 +67,11 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         accountMenu = new javax.swing.JMenu();
         registerItem = new javax.swing.JMenuItem();
         LoginMenueItem = new javax.swing.JMenuItem();
+        exitMenuItem = new javax.swing.JMenuItem();
         wardrobeMenu = new javax.swing.JMenu();
         ViewMyProfileMenuItem = new javax.swing.JMenuItem();
+        viewBrandsMenuItem = new javax.swing.JMenuItem();
         userHelp = new javax.swing.JMenu();
-        exitProgram = new javax.swing.JMenu();
 
         jMenu1.setText("File");
         jMenuBar2.add(jMenu1);
@@ -85,6 +90,11 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         });
 
         accountMenu.setText("Account");
+        accountMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountMenuActionPerformed(evt);
+            }
+        });
 
         registerItem.setText("Register");
         registerItem.addActionListener(new java.awt.event.ActionListener() {
@@ -102,11 +112,19 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         });
         accountMenu.add(LoginMenueItem);
 
+        exitMenuItem.setText("Exit ");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuItemActionPerformed(evt);
+            }
+        });
+        accountMenu.add(exitMenuItem);
+
         jMenuBar1.add(accountMenu);
 
         wardrobeMenu.setText("Wardrobe");
 
-        ViewMyProfileMenuItem.setText("View my Profile");
+        ViewMyProfileMenuItem.setText("View My Wardrobe");
         ViewMyProfileMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ViewMyProfileMenuItemActionPerformed(evt);
@@ -114,13 +132,18 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         });
         wardrobeMenu.add(ViewMyProfileMenuItem);
 
+        viewBrandsMenuItem.setText("View Brands");
+        viewBrandsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBrandsMenuItemActionPerformed(evt);
+            }
+        });
+        wardrobeMenu.add(viewBrandsMenuItem);
+
         jMenuBar1.add(wardrobeMenu);
 
         userHelp.setText("Help");
         jMenuBar1.add(userHelp);
-
-        exitProgram.setText("Exit");
-        jMenuBar1.add(exitProgram);
 
         setJMenuBar(jMenuBar1);
 
@@ -158,9 +181,23 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         viewUI.requestFocus();
         viewUI.setVisible(true);
     }//GEN-LAST:event_ViewMyProfileMenuItemActionPerformed
+
+    private void accountMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_accountMenuActionPerformed
+
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void viewBrandsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBrandsMenuItemActionPerformed
+        brandsUI.refreshData();
+        brandsUI.setVisible(true);
+    }//GEN-LAST:event_viewBrandsMenuItemActionPerformed
     public void enableMenuItems() {
         registerItem.setEnabled(true);
         ViewMyProfileMenuItem.setEnabled(true);
+        wardrobeMenu.setEnabled(true);
     }
 
     /**
@@ -230,7 +267,7 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
     private javax.swing.JMenuItem LoginMenueItem;
     private javax.swing.JMenuItem ViewMyProfileMenuItem;
     private javax.swing.JMenu accountMenu;
-    private javax.swing.JMenu exitProgram;
+    private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -238,6 +275,7 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem registerItem;
     private javax.swing.JMenu userHelp;
+    private javax.swing.JMenuItem viewBrandsMenuItem;
     private javax.swing.JMenu wardrobeMenu;
     // End of variables declaration//GEN-END:variables
 }
