@@ -31,6 +31,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Account"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="accountMenuActionPerformed"/>
+          </Events>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="registerItem">
               <Properties>
@@ -48,6 +51,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoginMenueItemActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="exitMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Exit "/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="wardrobeMenu">
@@ -57,10 +68,18 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="ViewMyProfileMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="View my Profile"/>
+                <Property name="text" type="java.lang.String" value="View My Wardrobe"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewMyProfileMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="viewBrandsMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="View Brands"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewBrandsMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -68,11 +87,6 @@
         <Menu class="javax.swing.JMenu" name="userHelp">
           <Properties>
             <Property name="text" type="java.lang.String" value="Help"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="exitProgram">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Exit"/>
           </Properties>
         </Menu>
       </SubComponents>
