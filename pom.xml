@@ -58,15 +58,34 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <plugin> 
+                <groupId>org.apache.maven.plugins</groupId> 
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>mywardrobeprogram.ui.WardrobeScreen</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
         <sourceDirectory>src</sourceDirectory>
         <resources>
+            <resource>
+                <directory>src/mywardrobeprogram/dao</directory>
+                <includes>
+                    <include>jdbc.properties</include>
+                </includes>
+                <targetPath>mywardrobeprogram/dao</targetPath>
+            </resource>
             <resource>
                 <directory>src/main/resouces/db</directory>
             </resource>
             <resource>
                 <directory>src</directory>
-                <includes>
+                <includes>!
                     <include>**/*.jpg</include>
                 </includes>
             </resource>
