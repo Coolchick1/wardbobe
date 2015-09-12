@@ -45,7 +45,7 @@
                 <version>3.2.1</version>
                 <configuration>
                     <driver>org.apache.derby.jdbc.ClientDriver</driver>
-                    <url>jdbc:derby://localhost:1527/test</url>
+                    <url>jdbc:derby://localhost:1527/test;create=true</url>
                     <user>sa</user>
                     <password>password</password>
                 </configuration>
@@ -61,6 +61,9 @@
         </plugins>
         <sourceDirectory>src</sourceDirectory>
         <resources>
+            <resource>
+                <directory>src/main/resouces/db</directory>
+            </resource>
             <resource>
                 <directory>src</directory>
                 <includes>
