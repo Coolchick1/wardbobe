@@ -47,7 +47,7 @@ public class BrandTableModel extends AbstractTableModel{
         switch (column){
             case 0: value = selectedRow.getName();
                     break;
-            case 1: value = selectedRow.getRecommeneded();
+            case 1: value = selectedRow.getRecommended();
                     break;
             case 2: value = selectedRow.getShoppingMall();
                     break;

@@ -14,7 +14,7 @@ public class Brand {
     private Integer id;
     private String name;
     private String shoppingMall;
-    private String recommeneded;
+    private String recommended;
 
     public Brand() {
     }
@@ -43,12 +43,12 @@ public class Brand {
         this.shoppingMall = shoppingMall;
     }
 
-    public String getRecommeneded() {
-        return recommeneded;
+    public String getRecommended() {
+        return recommended;
     }
 
-    public void setRecommeneded(String recommeneded) {
-        this.recommeneded = recommeneded;
+    public void setRecommended(String recommended) {
+        this.recommended = recommended;
     }
 
     @Override

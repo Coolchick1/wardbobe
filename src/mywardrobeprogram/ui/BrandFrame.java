@@ -135,7 +135,7 @@ public class BrandFrame extends javax.swing.JDialog {
         } else {
             Brand brand = new Brand();
             brand.setName(brandName);
-            brand.setRecommeneded(recommended);
+            brand.setRecommended(recommended);
             brand.setShoppingMall(shoppingMall);
             brand.setId(brandID);
             try {
@@ -195,7 +195,7 @@ public class BrandFrame extends javax.swing.JDialog {
     public void displayData(Brand displayBrand) {
         brandID = displayBrand.getId();
         brandNameTxt.setText(displayBrand.getName());
-        recommendedTxt.setText(displayBrand.getRecommeneded());
+        recommendedTxt.setText(displayBrand.getRecommended());
         shoppingMallTxt.setText(displayBrand.getShoppingMall());
         addButton.setText("update");
 
