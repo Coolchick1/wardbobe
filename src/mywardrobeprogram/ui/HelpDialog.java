@@ -8,10 +8,10 @@ package mywardrobeprogram.ui;
 
 /**
  *
- * @author Richard Luiz
+ * @author Natalia Luiz
  */
 public class HelpDialog extends javax.swing.JDialog {
-
+    private static final String MESSAGE = "Welcome to My Wardrobe Program! This Help facility will, assist you, the user, with navigation throughout this program. Users - New and Existing Users: If you are not already an existing user, you are restricted from the wardrobe tab, which is a drop down of viewing your wardrobe and viewing brands. If you would like to able to access these functions, you are required to register as a new user and then log in with your created username and password. This will allow you access to the wardrobe tab, which is a drop down of viewing your wardrobe where you can add, edit (e.g. change the colour of your dress from yellow to pink) and delete clothing items in your closet. Furthermore, you are allowed access to view brands where you can add brands, edit brands (e.g. change your newly created brand name from Sissy Boy to The Lot) and delete brands that exist in your wardrobe. Thank you for access the help function, enjoy!";
     /**
      * Creates new form HelpDialog
      */
@@ -20,6 +20,10 @@ public class HelpDialog extends javax.swing.JDialog {
         initComponents();
         
         helpText.setEditable(false);
+	helpText.setText(MESSAGE);
+	helpText.setWrapStyleWord(true);
+	helpText.setLineWrap(true);
+	helpText.setCaretPosition(0);
         
     }
 
