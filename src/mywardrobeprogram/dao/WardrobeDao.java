@@ -14,6 +14,8 @@ import mywardrobeprogram.model.Clothing;
 import mywardrobeprogram.model.User;
 
 /**
+ * This is the data access object(DAO) that facilitates all db read and write
+ * operations.
  * 
  * @author Natalia Luiz
  */
@@ -131,6 +133,15 @@ public class WardrobeDao {
         }
     }
 
+    /**
+     * Add new user to the database
+     * 
+     * @param newUser New user details
+     * 
+     * @return Newly added user with primary key returned
+     * 
+     * @throws SQLException Thrown if unable to persist new user to the database
+     */
     public User addUser(User newUser) throws SQLException {
         PreparedStatement prepStatement = wardrobeConnection.prepareStatement(INSERT_NEW_USER);
         prepStatement.setString(1, newUser.getFirstName());
@@ -173,7 +184,7 @@ public class WardrobeDao {
             brand.setId(rs.getInt("brandID"));
             brand.setName(rs.getString("brandName"));
             brand.setShoppingMall(rs.getString("shoppingMall"));
-            brand.setRecommeneded(rs.getString("recommended"));
+            brand.setRecommended(rs.getString("recommended"));
 
             allBrands.add(brand);
         }
@@ -240,7 +251,7 @@ public class WardrobeDao {
                 response = new Brand();
                 response.setId(rs.getInt("brandID"));
                 response.setName(rs.getString("brandName"));
-                response.setRecommeneded(rs.getString("recommended"));
+                response.setRecommended(rs.getString("recommended"));
                 response.setShoppingMall(rs.getString("shoppingMall"));
 
             }
@@ -270,7 +281,7 @@ public class WardrobeDao {
     public void addBrand (Brand newBrand) throws SQLException { 
         PreparedStatement statement = wardrobeConnection.prepareStatement(ADD_NEW_BRAND);
         statement.setString(1,newBrand.getName());
-        statement.setString(2, newBrand.getRecommeneded());
+        statement.setString(2, newBrand.getRecommended());
         statement.setString(3, newBrand.getShoppingMall());
         statement.execute();
     }
@@ -282,7 +293,7 @@ public class WardrobeDao {
     public void updateBrand (Brand updatedBrand)throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(UPDATE_BRAND_BY_ID);
         statement.setString(1, updatedBrand.getName());
-        statement.setString(2, updatedBrand.getRecommeneded());
+        statement.setString(2, updatedBrand.getRecommended());
         statement.setString(3, updatedBrand.getShoppingMall());
         statement.setInt(4, updatedBrand.getId());
         statement.execute();
