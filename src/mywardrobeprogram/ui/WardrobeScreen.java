@@ -72,6 +72,7 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         ViewMyProfileMenuItem = new javax.swing.JMenuItem();
         viewBrandsMenuItem = new javax.swing.JMenuItem();
         userHelp = new javax.swing.JMenu();
+        aboutMenuItem = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar2.add(jMenu1);
@@ -143,6 +144,20 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         jMenuBar1.add(wardrobeMenu);
 
         userHelp.setText("Help");
+        userHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userHelpActionPerformed(evt);
+            }
+        });
+
+        aboutMenuItem.setText("About");
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItemActionPerformed(evt);
+            }
+        });
+        userHelp.add(aboutMenuItem);
+
         jMenuBar1.add(userHelp);
 
         setJMenuBar(jMenuBar1);
@@ -164,6 +179,7 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
 
     private void registerItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerItemActionPerformed
         registerUI.requestFocus();
+	registerUI.setLocationRelativeTo(this);
         registerUI.setVisible(true);
     }//GEN-LAST:event_registerItemActionPerformed
 
@@ -173,12 +189,14 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
 
     private void LoginMenueItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginMenueItemActionPerformed
         loginUI.requestFocus();
+	loginUI.setLocationRelativeTo(this);
         loginUI.setVisible(true);
     }//GEN-LAST:event_LoginMenueItemActionPerformed
 
     private void ViewMyProfileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewMyProfileMenuItemActionPerformed
         viewUI.refreshData();
         viewUI.requestFocus();
+	viewUI.setLocationRelativeTo(this);
         viewUI.setVisible(true);
     }//GEN-LAST:event_ViewMyProfileMenuItemActionPerformed
 
@@ -192,8 +210,19 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
 
     private void viewBrandsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBrandsMenuItemActionPerformed
         brandsUI.refreshData();
+	brandsUI.setLocationRelativeTo(this);
         brandsUI.setVisible(true);
     }//GEN-LAST:event_viewBrandsMenuItemActionPerformed
+
+    private void userHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userHelpActionPerformed
+        
+    }//GEN-LAST:event_userHelpActionPerformed
+
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+        HelpDialog help = new HelpDialog(this, true);
+	help.setLocationRelativeTo(help);
+	help.setVisible(true);
+    }//GEN-LAST:event_aboutMenuItemActionPerformed
     public void enableMenuItems() {
         registerItem.setEnabled(true);
         ViewMyProfileMenuItem.setEnabled(true);
@@ -266,6 +295,7 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem LoginMenueItem;
     private javax.swing.JMenuItem ViewMyProfileMenuItem;
+    private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenu accountMenu;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu jMenu1;
