@@ -12,6 +12,7 @@ import mywardrobeprogram.dao.WardrobeDao;
 import mywardrobeprogram.dao.persistence.impl.BrandAddPersist;
 import mywardrobeprogram.dao.persistence.impl.BrandUpdatePersist;
 import mywardrobeprogram.model.Brand;
+import mywardrobeprogram.ui.listener.FormWindowListener;
 import mywardrobeprogram.ui.model.BrandTableModel;
 
 /**
@@ -26,6 +27,8 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
     public ViewBrandsFrame() {
         initComponents();
         refreshData();
+	setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+	addWindowListener(new FormWindowListener());
         brandFrame = new BrandFrame(this, true);
 
     }
@@ -136,6 +139,7 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         brandFrame.reset();
         brandFrame.setPersistence(new BrandAddPersist());
+	brandFrame.setLocationRelativeTo(this);
         brandFrame.setVisible(true);
         refreshData();
     }//GEN-LAST:event_addButtonActionPerformed
@@ -151,6 +155,7 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
             brandFrame.reset();
             brandFrame.displayData(selectedBrand);
             brandFrame.setPersistence(new BrandUpdatePersist());
+	    brandFrame.setLocationRelativeTo(this);
             brandFrame.setVisible(true);
             refreshData();
         }
