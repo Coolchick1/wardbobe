@@ -6,25 +6,36 @@
 
 package mywardrobeprogram.ui;
 
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Natalia Luiz
  */
 public class HelpDialog extends javax.swing.JDialog {
-    private static final String MESSAGE = "Welcome to My Wardrobe Program! This Help facility will, assist you, the user, with navigation throughout this program. Users - New and Existing Users: If you are not already an existing user, you are restricted from the wardrobe tab, which is a drop down of viewing your wardrobe and viewing brands. If you would like to able to access these functions, you are required to register as a new user and then log in with your created username and password. This will allow you access to the wardrobe tab, which is a drop down of viewing your wardrobe where you can add, edit (e.g. change the colour of your dress from yellow to pink) and delete clothing items in your closet. Furthermore, you are allowed access to view brands where you can add brands, edit brands (e.g. change your newly created brand name from Sissy Boy to The Lot) and delete brands that exist in your wardrobe. Thank you for access the help function, enjoy!";
+    private static final String MESSAGE = "Welcome to the My Wardrobe Program! This Help facility will assist you, the user, with navigation throughout this program. \n\nUsers - New and Existing Users: If you are not already an existing user, you are restricted from the wardrobe tab, which is a drop down of viewing your wardrobe and viewing brands. \n\nIf you would like to able to access these functions, you are required to register as a new user and then log in with your created username and password. \n\nThis will allow you access to the wardrobe tab, which is a drop down of viewing your wardrobe where you can add, edit (e.g. change the colour of your dress from yellow to pink) and delete clothing items in your closet. \n\nFurthermore, you are allowed access to view brands where you can add brands, edit brands (e.g. change your newly created brand name from Sissy Boy to The Lot) and delete brands that exist in your wardrobe. \n\nThank you for accessing the help function, enjoy!";
+    
+    
     /**
      * Creates new form HelpDialog
      */
     public HelpDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+	JPanel image = new ImagePanel(new ImageIcon(getClass().getResource("IMG_6441_1024.jpg")).getImage());
+        add(image);
+
+        repaint();
+        pack();
+       
         helpText.setEditable(false);
 	helpText.setText(MESSAGE);
 	helpText.setWrapStyleWord(true);
 	helpText.setLineWrap(true);
 	helpText.setCaretPosition(0);
         
+	
     }
 
     /**
@@ -40,6 +51,7 @@ public class HelpDialog extends javax.swing.JDialog {
         helpText = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         helpText.setColumns(20);
         helpText.setRows(5);
@@ -109,7 +121,6 @@ public class HelpDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea helpText;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
