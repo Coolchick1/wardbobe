@@ -149,6 +149,7 @@ public class WardrobeDao {
         prepStatement.setString(3, newUser.getUsername());
         prepStatement.setString(4, newUser.getPassword());
         prepStatement.executeUpdate();
+        prepStatement.close();
 
         return findUserByUsername(newUser.getUsername());
     }
@@ -201,6 +202,7 @@ public class WardrobeDao {
         statement.setInt(5, newClothingItem.getUserID());
         statement.setString(6, newClothingItem.getStyle());
         statement.executeUpdate();
+        statement.close();
     }
 
     /**
@@ -258,13 +260,12 @@ public class WardrobeDao {
         }
         return response;
     }
+
     public void deleteClothingByID (int id)throws SQLException{
         PreparedStatement statement = wardrobeConnection.prepareStatement(DELETE_CLOTHING_BY_ID);
         statement.setInt(1, id);
         statement.execute();
-        
-        
-                
+        statement.close();
     }
     
     public void updateClothing(Clothing updatedItem) throws SQLException {
@@ -277,18 +278,21 @@ public class WardrobeDao {
         statement.setString(6, updatedItem.getStyle());
         statement.setInt(7, updatedItem.getId());
         statement.execute();
+        statement.close();
     }
     public void addBrand (Brand newBrand) throws SQLException { 
         PreparedStatement statement = wardrobeConnection.prepareStatement(ADD_NEW_BRAND);
         statement.setString(1,newBrand.getName());
         statement.setString(2, newBrand.getRecommended());
         statement.setString(3, newBrand.getShoppingMall());
-        statement.execute();
+        statement.executeUpdate();
+        statement.close();
     }
     public void deleteBrandByID (int id) throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(DELETE_BRAND_BY_ID);
         statement.setInt(1, id);
-        statement.execute();      
+        statement.executeUpdate();
+        statement.close();
     }
     public void updateBrand (Brand updatedBrand)throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(UPDATE_BRAND_BY_ID);
@@ -296,7 +300,7 @@ public class WardrobeDao {
         statement.setString(2, updatedBrand.getRecommended());
         statement.setString(3, updatedBrand.getShoppingMall());
         statement.setInt(4, updatedBrand.getId());
-        statement.execute();
-          
+        statement.executeUpdate();
+        statement.close();
     }
 }

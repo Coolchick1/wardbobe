@@ -44,4 +44,4 @@ FOREIGN KEY (brandID)
 references Brands (brandID);
  
 INSERT INTO USERS(username, name, surname, password) VALUES('natalia.luiz', 'natalia', 'luiz', 'pwd');
-INSERT INTO BRANDS(brandName, reccommended, shoppingMall) VALUES ('Levis',true,'Waterfront');
+INSERT INTO BRANDS(brandName, recommended, shoppingMall) VALUES ('Levis',true,'Waterfront');
