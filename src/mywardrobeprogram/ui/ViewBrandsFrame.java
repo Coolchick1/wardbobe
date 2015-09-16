@@ -7,7 +7,9 @@ package mywardrobeprogram.ui;
 
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import mywardrobeprogram.dao.WardrobeDao;
 import mywardrobeprogram.dao.persistence.impl.BrandAddPersist;
 import mywardrobeprogram.dao.persistence.impl.BrandUpdatePersist;
@@ -30,6 +32,11 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
 	setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	addWindowListener(new FormWindowListener());
         brandFrame = new BrandFrame(this, true);
+	 JPanel image = new ImagePanel(new ImageIcon(getClass().getResource("donut-tumblr-backgrounds.jpg")).getImage());
+        add(image);
+
+        repaint();
+        pack();
 
     }
 
@@ -60,6 +67,7 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
         deleteButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         brandsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,14 +118,14 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(addButton)
-                        .addGap(39, 39, 39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(editButton)
-                        .addGap(40, 40, 40)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(deleteButton)
-                        .addGap(0, 136, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

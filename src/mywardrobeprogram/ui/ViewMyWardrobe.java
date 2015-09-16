@@ -8,8 +8,10 @@ package mywardrobeprogram.ui;
 
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import mywardrobeprogram.dao.WardrobeDao;
 import mywardrobeprogram.dao.persistence.impl.ClothingAddPersist;
 import mywardrobeprogram.dao.persistence.impl.ClothingUpdatePersist;
@@ -30,6 +32,11 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new FormWindowListener());
+	 JPanel image = new ImagePanel(new ImageIcon(getClass().getResource("IMG_5605_1024.jpg")).getImage());
+        add(image);
+
+        repaint();
+        pack();
     }
 
     public void refreshData (){
@@ -59,6 +66,7 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
         editButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Take a look what you have in your closet!");
 
@@ -100,10 +108,10 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(addButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
