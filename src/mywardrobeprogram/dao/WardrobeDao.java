@@ -153,7 +153,15 @@ public class WardrobeDao {
 
         return findUserByUsername(newUser.getUsername());
     }
-
+    /**
+     * This retrieval method allows us to find the user in tblUsers.
+     * 
+     * @param username 
+     * 
+     * @return returns the user
+     * 
+     * @throws SQLException Thrown if unable to find new user in the database
+     */
     public User findUserByUsername(String username) throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(FIND_USER_BY_USERNAME_QUERY);
         statement.setString(1, username);
@@ -175,7 +183,15 @@ public class WardrobeDao {
 
         return user;
     }
-
+    /**
+     * This retrieval method allows us to find a list of user's brands in their wardrobe
+     * 
+     * @param username 
+     * 
+     * @return List of brands returned.
+     * 
+     * @throws SQLException Database unavailable 
+     */
     public List<Brand> getAllBrands() throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(GET_ALL_BRANDS_QUERY);
         ResultSet rs = statement.executeQuery();
@@ -192,7 +208,13 @@ public class WardrobeDao {
         rs.close();
         return allBrands;
     }
-
+    /**
+     * Add new clothing item in the user's wardrobe
+     * 
+     * @param newClothingItem new clothing item's details 
+     *
+     * @throws SQLException Thrown if unable to persist new clothing item new user to the database 
+     */
     public void addWardrobeItem(Clothing newClothingItem) throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(INSERT_NEW_ITEM_OF_CLOTHING);
         statement.setString(1, newClothingItem.getType());
@@ -242,7 +264,15 @@ public class WardrobeDao {
 
         return usersClothing;
     }
-
+    /**
+     * This retrieval method allows us to find a list of the users clothing in their wardrobe.
+     * 
+     * @param userId The id relating to the brands primary key in the database
+     * 
+     * @return brands returned.
+     * 
+     * @throws SQLException Database unavailable
+     */
     public Brand findBrandByID(Integer id) throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(FIND_BRAND_BY_ID);
         statement.setInt(1, id);
@@ -260,14 +290,26 @@ public class WardrobeDao {
         }
         return response;
     }
-
+    /**
+     * Delete a clothing item in the user's wardrobe
+     * 
+     * @param id The id relating to the brands primary key in the database
+     * 
+     * @throws SQLException Thrown unable to delete item in database
+     */
     public void deleteClothingByID (int id)throws SQLException{
         PreparedStatement statement = wardrobeConnection.prepareStatement(DELETE_CLOTHING_BY_ID);
         statement.setInt(1, id);
         statement.execute();
         statement.close();
     }
-    
+    /**
+     * Update a clothing item in the user's wardrobe
+     * 
+     * @param updatedItem updated clothing items details
+     * 
+     * @throws SQLException Thrown unable to update item in database
+     */
     public void updateClothing(Clothing updatedItem) throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(UPDATE_ITEM_OF_CLOTHING_BY_ID);
         statement.setString(1, updatedItem.getType());
@@ -280,6 +322,13 @@ public class WardrobeDao {
         statement.execute();
         statement.close();
     }
+    /**
+     * Add a brand in the user's wardrobe
+     * 
+     * @param newBrand new brands details
+     * 
+     * @throws SQLException Thrown unable to add brand in database
+     */
     public void addBrand (Brand newBrand) throws SQLException { 
         PreparedStatement statement = wardrobeConnection.prepareStatement(ADD_NEW_BRAND);
         statement.setString(1,newBrand.getName());
@@ -288,12 +337,26 @@ public class WardrobeDao {
         statement.executeUpdate();
         statement.close();
     }
+    /**
+     * Delete a brand in the user's wardrobe
+     * 
+     * @param id The id relating to the brands primary key in the database
+     * 
+     * @throws SQLException Thrown unable to delete brand in database
+     */
     public void deleteBrandByID (int id) throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(DELETE_BRAND_BY_ID);
         statement.setInt(1, id);
         statement.executeUpdate();
         statement.close();
     }
+    /**
+     * Update a brand in the user's wardrobe
+     * 
+     * @param updatedBrand updated brands details
+     * 
+     * @throws SQLException Thrown unable to update brand in database
+     */
     public void updateBrand (Brand updatedBrand)throws SQLException {
         PreparedStatement statement = wardrobeConnection.prepareStatement(UPDATE_BRAND_BY_ID);
         statement.setString(1, updatedBrand.getName());
