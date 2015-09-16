@@ -9,10 +9,6 @@
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
-        <flyway.driver>org.apache.derby.jdbc.ClientDriver</flyway.driver>
-        <flyway.url>jdbc:derby://localhost:1527/Wardrobe2</flyway.url>
-        <flyway.username>sa</flyway.username>
-        <flyway.password>password</flyway.password>
     </properties>
     <developers>
         <developer>
@@ -45,7 +41,7 @@
                 <version>3.2.1</version>
                 <configuration>
                     <driver>org.apache.derby.jdbc.ClientDriver</driver>
-                    <url>jdbc:derby://localhost:1527/test;create=true</url>
+                    <url>jdbc:derby://localhost:1527/Wardrobe2;create=true</url>
                     <user>sa</user>
                     <password>password</password>
                 </configuration>
