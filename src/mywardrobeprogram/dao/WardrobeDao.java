@@ -156,7 +156,7 @@ public class WardrobeDao {
     /**
      * This retrieval method allows us to find the user in tblUsers.
      * 
-     * @param username 
+     * @param username Username to look up
      * 
      * @return returns the user
      * 
@@ -184,9 +184,7 @@ public class WardrobeDao {
         return user;
     }
     /**
-     * This retrieval method allows us to find a list of user's brands in their wardrobe
-     * 
-     * @param username 
+     * Get all registered brands
      * 
      * @return List of brands returned.
      * 
@@ -265,9 +263,9 @@ public class WardrobeDao {
         return usersClothing;
     }
     /**
-     * This retrieval method allows us to find a list of the users clothing in their wardrobe.
+     * This method retrieves a specific brand by its ID.
      * 
-     * @param userId The id relating to the brands primary key in the database
+     * @param id The BrandID is what we are searching on.
      * 
      * @return brands returned.
      * 
@@ -293,7 +291,7 @@ public class WardrobeDao {
     /**
      * Delete a clothing item in the user's wardrobe
      * 
-     * @param id The id relating to the brands primary key in the database
+     * @param id The id relating to the clothing primary key in the database
      * 
      * @throws SQLException Thrown unable to delete item in database
      */
