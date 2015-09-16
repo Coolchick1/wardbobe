@@ -6,7 +6,9 @@
 package mywardrobeprogram.ui;
 
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import mywardrobeprogram.dao.persistence.BrandPersist;
 import mywardrobeprogram.model.Brand;
 
@@ -17,11 +19,16 @@ import mywardrobeprogram.model.Brand;
 public class BrandFrame extends javax.swing.JDialog {
 
     /**
-     * Creates new form BrandFarame
+     * Creates new form BrandFrame
      */
     public BrandFrame(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+	 JPanel image = new ImagePanel(new ImageIcon(getClass().getResource("tumblr_nchsszxGMM1rf6a91o1_500.jpg")).getImage());
+        add(image);
+
+        repaint();
+        pack();
     }
 
     /**
@@ -43,6 +50,7 @@ public class BrandFrame extends javax.swing.JDialog {
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         brandName.setText("Brand name");
 
