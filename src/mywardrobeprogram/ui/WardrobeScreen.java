@@ -69,8 +69,8 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         LoginMenueItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
         wardrobeMenu = new javax.swing.JMenu();
-        ViewMyProfileMenuItem = new javax.swing.JMenuItem();
         viewBrandsMenuItem = new javax.swing.JMenuItem();
+        ViewMyProfileMenuItem = new javax.swing.JMenuItem();
         userHelp = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
@@ -125,14 +125,6 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
 
         wardrobeMenu.setText("Wardrobe");
 
-        ViewMyProfileMenuItem.setText("View My Wardrobe");
-        ViewMyProfileMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewMyProfileMenuItemActionPerformed(evt);
-            }
-        });
-        wardrobeMenu.add(ViewMyProfileMenuItem);
-
         viewBrandsMenuItem.setText("View Brands");
         viewBrandsMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,6 +132,14 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
             }
         });
         wardrobeMenu.add(viewBrandsMenuItem);
+
+        ViewMyProfileMenuItem.setText("View My Wardrobe");
+        ViewMyProfileMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewMyProfileMenuItemActionPerformed(evt);
+            }
+        });
+        wardrobeMenu.add(ViewMyProfileMenuItem);
 
         jMenuBar1.add(wardrobeMenu);
 
