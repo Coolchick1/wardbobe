@@ -9,9 +9,11 @@ import java.awt.Frame;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import mywardrobeprogram.dao.WardrobeDao;
@@ -33,6 +35,11 @@ public class ClothingFrame extends javax.swing.JDialog {
         super(parent, true);
         initComponents();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	JPanel image = new ImagePanel(new ImageIcon(getClass().getResource("IMG_7668_1024.jpg")).getImage());
+        add(image);
+
+        repaint();
+        pack();
         addWindowListener(new FormWindowListener());
         try {
             List<Brand> brands = WardrobeDao.getInstance().getAllBrands();
@@ -72,6 +79,7 @@ public class ClothingFrame extends javax.swing.JDialog {
         brandComboBox = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         itemTypeLabel.setText("Item Type");
 
@@ -114,24 +122,19 @@ public class ClothingFrame extends javax.swing.JDialog {
                                             .addComponent(brandIDLabel, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(colourLabel, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(sizeLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(209, 209, 209)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(209, 209, 209)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(sizeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(colourTxt)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(207, 207, 207)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(addButton)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(styleTxt)
-                                                        .addComponent(brandComboBox, 0, 193, Short.MAX_VALUE)))
-                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                            .addComponent(brandComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(sizeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(colourTxt)
+                                            .addComponent(styleTxt, javax.swing.GroupLayout.Alignment.TRAILING)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(itemTypeLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(itemTypeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(189, 189, 189)
+                                        .addComponent(itemTypeTxt))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(addButton)))
                                 .addGap(76, 76, 76)))
                         .addGap(115, 115, 115))
                     .addGroup(layout.createSequentialGroup()
@@ -163,15 +166,11 @@ public class ClothingFrame extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(styleLabel)
                     .addComponent(styleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                        .addComponent(messageLabel)
-                        .addGap(131, 131, 131))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(addButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(messageLabel)
+                .addGap(131, 131, 131))
         );
 
         pack();
