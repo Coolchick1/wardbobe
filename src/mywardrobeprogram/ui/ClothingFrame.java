@@ -29,7 +29,9 @@ import mywardrobeprogram.ui.listener.FormWindowListener;
 public class ClothingFrame extends javax.swing.JDialog {
 
     /**
-     * Creates new form AdingFrame
+     * Creates new form AddingFrame
+     * 
+     * @param parent 
      */
     public ClothingFrame(Frame parent) {
         super(parent, true);
@@ -175,7 +177,13 @@ public class ClothingFrame extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Action performed method to get the add button working 
+     * 
+     * Validation included to check that user entered all values in the txtFields, if not a MessageDialog will pop up stating the user must enter a value for that field
+     * 
+     * @throws SQLException Database unable to save item of clothing  
+     */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         boolean validData = validateClothingValues();
         if (validData) {
@@ -240,6 +248,11 @@ public class ClothingFrame extends javax.swing.JDialog {
         this.persist = persist;
         addButton.setText(persistButtonName);
     }
+    /**
+     * Displays newly created brand
+     * 
+     * @param displayItem shows newly created brands details
+     */
     public void display (Clothing displayItem){
         colourTxt.setText(displayItem.getColour());
         itemTypeTxt.setText (displayItem.getType());
@@ -254,6 +267,9 @@ public class ClothingFrame extends javax.swing.JDialog {
             
         }
     }
+    /**
+     * 
+     */
     public void reset (){
          colourTxt.setText("");
         itemTypeTxt.setText("");

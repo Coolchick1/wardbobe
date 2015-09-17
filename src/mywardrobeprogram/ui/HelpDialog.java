@@ -19,6 +19,8 @@ public class HelpDialog extends javax.swing.JDialog {
     
     /**
      * Creates new form HelpDialog
+     * 
+     * Code to add a images as the background
      */
     public HelpDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

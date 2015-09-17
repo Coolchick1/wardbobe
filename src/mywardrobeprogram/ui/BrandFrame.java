@@ -15,6 +15,10 @@ import mywardrobeprogram.model.Brand;
 /**
  *
  * @author Natalia Luiz
+ * 
+ * Coding to the BrandFrame
+ * 
+ * Code to set a background for the BrandFrame
  */
 public class BrandFrame extends javax.swing.JDialog {
 
@@ -128,7 +132,13 @@ public class BrandFrame extends javax.swing.JDialog {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         setVisible(false);
     }//GEN-LAST:event_cancelButtonActionPerformed
-
+    /**
+     * Action performed method to get the add button working 
+     * 
+     * Validation check included to check that user has entered all textFields, if not message will pop up stating that the user must fill in that field
+     * 
+     * @throws SQLException Database unavailable to persist brand
+     */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         String brandName = brandNameTxt.getText();
         String recommended = recommendedTxt.getText();
@@ -199,7 +209,11 @@ public class BrandFrame extends javax.swing.JDialog {
             }
         });
     }
-
+    /**
+     * Displays newly created brand
+     * 
+     * @param displayBrand shows newly created brands details
+     */
     public void displayData(Brand displayBrand) {
         brandID = displayBrand.getId();
         brandNameTxt.setText(displayBrand.getName());
@@ -208,7 +222,11 @@ public class BrandFrame extends javax.swing.JDialog {
         addButton.setText("update");
 
     }
-
+    /**
+     * 
+     * 
+     *  
+     */
     public void reset() {
         brandID = null;
         brandNameTxt.setText("");

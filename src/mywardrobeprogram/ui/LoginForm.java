@@ -26,6 +26,10 @@ public class LoginForm extends javax.swing.JFrame {
     
     /**
      * Creates new form LoginForm
+     * 
+     * @param parent
+     * 
+     * Code to add image as background for the login form
      */
     public LoginForm(WardrobeScreen parent) {
         this.parent = parent; 
@@ -120,7 +124,12 @@ public class LoginForm extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Action performed method to get the login button working 
+     * 
+     * Validation to check that user entered username and password correctly, if not a MessageDialog will pop up to inform the user of the error
+     */
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String username = usernameTextField.getText();
         String password = new String(passwordTextField.getPassword());

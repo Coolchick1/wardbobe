@@ -19,6 +19,8 @@ public class RegisterForm extends javax.swing.JFrame {
 
     /**
      * Creates new form ResigterForm
+     * 
+     * Code to put an image in the background of the register form
      */
     public RegisterForm() {
         initComponents();
@@ -170,7 +172,11 @@ public class RegisterForm extends javax.swing.JFrame {
     private boolean isEmpty(String checkValue) {
         return checkValue == null || checkValue.trim().equals("");
     }
-
+    /**
+    * Validation check to check that the user as entered all details relating to registering, if not a MeesageDialog will pop up stating what txtFileds need to be completed
+     * 
+     * Code to put an image in the background of the register form
+     */
     private void onRegister(java.awt.event.ActionEvent evt) {
         try {
 
