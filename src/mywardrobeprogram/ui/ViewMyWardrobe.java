@@ -26,7 +26,9 @@ import mywardrobeprogram.ui.model.ClothingTableModel;
 public class ViewMyWardrobe extends javax.swing.JFrame {
 
     /**
-     * Creates new form ViewMyProfile
+     * Creates new form ViewMyWardrobe
+     * 
+     * Code to add an image as a background of the ViewMyWardrobeFrame
      */
     public ViewMyWardrobe() {
         initComponents();
@@ -38,7 +40,7 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
         repaint();
         pack();
     }
-
+    
     public void refreshData (){
         try {
             List<Clothing> usersWardrobe = WardrobeDao.getInstance().findClothingByUserId(LoginForm.loggedInUser.getId());
@@ -139,7 +141,9 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Action performed method to get add button working
+     */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         displayClothingFrame.setPersist(new ClothingAddPersist(), "add");
 	displayClothingFrame.setLocationRelativeTo(this);
@@ -147,7 +151,11 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
         displayClothingFrame.reset();
         refreshData();
     }//GEN-LAST:event_addButtonActionPerformed
-
+     /**
+     * Action performed method to get delete button working
+     * 
+     * @throws SQLException Database unable to delete the clothing item
+     */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int selectedClothing = jTable1.getSelectedRow();
         if (selectedClothing != -1){
@@ -162,7 +170,9 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_deleteButtonActionPerformed
-
+     /**
+     * Actin performed to get edit button working
+     */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         int selectedRow = jTable1.getSelectedRow();
         ClothingTableModel model = (ClothingTableModel)jTable1.getModel();

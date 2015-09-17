@@ -25,6 +25,8 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewBrandsFrame
+     * 
+     * Code to add an image as a background for the ViewBrandFrame
      */
     public ViewBrandsFrame() {
         initComponents();
@@ -39,7 +41,9 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
         pack();
 
     }
-
+    /**
+     * Refresh the list of brands allowing for the new created brands to be shown
+     */
     public void refreshData() {
         try {
             List<Brand> allBrands = WardrobeDao.getInstance().getAllBrands();
@@ -151,7 +155,11 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
         brandFrame.setVisible(true);
         refreshData();
     }//GEN-LAST:event_addButtonActionPerformed
-
+    /**
+     * Method to edit a field/fields of a clothing item. Select the row to edit.
+     * 
+     * Validation check includes a MessageDialog that will pop up informing the user to select a row to edit
+     */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         int selectedRow = brandsTable.getSelectedRow();
         if (selectedRow == -1) {
@@ -168,7 +176,11 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
             refreshData();
         }
     }//GEN-LAST:event_editButtonActionPerformed
-
+     /**
+     * Method to delete a clothing item. Select a row to delete. 
+     * 
+     * Validation check includes a MessageDialog that will pop up informing the user to select a row to delete
+     */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int selectedRow = brandsTable.getSelectedRow();
         if (selectedRow == -1) {
