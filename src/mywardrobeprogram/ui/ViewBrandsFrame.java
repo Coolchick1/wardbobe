@@ -147,7 +147,9 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Sets up BrandFrame to add a new brand
+     */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         brandFrame.reset();
         brandFrame.setPersistence(new BrandAddPersist());

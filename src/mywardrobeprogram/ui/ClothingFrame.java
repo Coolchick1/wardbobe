@@ -180,8 +180,7 @@ public class ClothingFrame extends javax.swing.JDialog {
     /**
      * Action performed method to get the add button working 
      * 
-     * Validation included to check that user entered all values in the txtFields, if not a MessageDialog will pop up stating the user must enter a value for that field
-     * 
+     * Validates data entered by user into UI. If valid persist to db, otherwise display dialog indicating error
      * @throws SQLException Database unable to save item of clothing  
      */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed

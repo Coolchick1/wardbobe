@@ -128,7 +128,7 @@ public class LoginForm extends javax.swing.JFrame {
     /**
      * Action performed method to get the login button working 
      * 
-     * Validation to check that user entered username and password correctly, if not a MessageDialog will pop up to inform the user of the error
+     * Validate all the data has been entered in to UI, retrieve the user if all data entered. If user found verify passwords match and if so login user, otherwise display error
      */
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String username = usernameTextField.getText();

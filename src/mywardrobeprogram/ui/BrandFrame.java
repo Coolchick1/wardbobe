@@ -13,12 +13,11 @@ import mywardrobeprogram.dao.persistence.BrandPersist;
 import mywardrobeprogram.model.Brand;
 
 /**
- *
- * @author Natalia Luiz
- * 
  * Coding to the BrandFrame
  * 
  * Code to set a background for the BrandFrame
+ * 
+ * @author Natalia Luiz
  */
 public class BrandFrame extends javax.swing.JDialog {
 
@@ -135,7 +134,7 @@ public class BrandFrame extends javax.swing.JDialog {
     /**
      * Action performed method to get the add button working 
      * 
-     * Validation check included to check that user has entered all textFields, if not message will pop up stating that the user must fill in that field
+     * Performs validation for data entered into UI and persists to db
      * 
      * @throws SQLException Database unavailable to persist brand
      */
@@ -210,7 +209,7 @@ public class BrandFrame extends javax.swing.JDialog {
         });
     }
     /**
-     * Displays newly created brand
+     * Displays an existing brand
      * 
      * @param displayBrand shows newly created brands details
      */
@@ -223,9 +222,7 @@ public class BrandFrame extends javax.swing.JDialog {
 
     }
     /**
-     * 
-     * 
-     *  
+     * Resets UI screen 
      */
     public void reset() {
         brandID = null;

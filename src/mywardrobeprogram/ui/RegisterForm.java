@@ -168,12 +168,16 @@ public class RegisterForm extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         setVisible(false);
     }//GEN-LAST:event_formWindowClosed
-
+    /**
+     * Check method to make sure value is filled in
+     */
     private boolean isEmpty(String checkValue) {
         return checkValue == null || checkValue.trim().equals("");
     }
     /**
-    * Validation check to check that the user as entered all details relating to registering, if not a MeesageDialog will pop up stating what txtFileds need to be completed
+     * Validation check to check that the user as entered all details relating to registering, if not a MeesageDialog will pop up stating what txtFileds need to be completed
+     * 
+     * @param 
      * 
      * Code to put an image in the background of the register form
      */
