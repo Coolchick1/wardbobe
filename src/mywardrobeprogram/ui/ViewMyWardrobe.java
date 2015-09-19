@@ -147,8 +147,9 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         displayClothingFrame.setPersist(new ClothingAddPersist(), "add");
 	displayClothingFrame.setLocationRelativeTo(this);
+	displayClothingFrame.reset();
         displayClothingFrame.setVisible(true);
-        displayClothingFrame.reset();
+        
         refreshData();
     }//GEN-LAST:event_addButtonActionPerformed
      /**
@@ -179,10 +180,11 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
         Clothing selectedItem = model.getSelected(selectedRow);
         
         displayClothingFrame.setPersist(new ClothingUpdatePersist(), "update");
+	displayClothingFrame.reset();
         displayClothingFrame.display(selectedItem);
 	displayClothingFrame.setLocationRelativeTo(this);
         displayClothingFrame.setVisible(true);
-        displayClothingFrame.reset();
+        
         refreshData();
     }//GEN-LAST:event_editButtonActionPerformed
 
