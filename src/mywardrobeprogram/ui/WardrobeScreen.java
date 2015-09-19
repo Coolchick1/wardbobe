@@ -5,26 +5,27 @@
  */
 package mywardrobeprogram.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Image;
+
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
- *
+ * Wardrobe application entry point.Creates all UIs the system uses
+ * 
  * @author Natalia Luiz
  */
 public class WardrobeScreen extends javax.swing.JFrame implements WindowListener {
 
-    private RegisterForm registerUI;
-    private LoginForm loginUI;
-    private ViewMyWardrobe viewUI;
-    private ViewBrandsFrame brandsUI;
+    private final RegisterForm registerUI;
+    private final LoginForm loginUI;
+    private final ViewMyWardrobe viewUI;
+    private final ViewBrandsFrame brandsUI;
 
     /**
-     * Creates new form MenuBarTest
+     * Constructor 
+     * Create UI dialogs 
      */
     public WardrobeScreen() {
         initComponents();
@@ -176,7 +177,11 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Display register new user frame
+     * 
+     * @param evt click event 
+     */
     private void registerItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerItemActionPerformed
         registerUI.requestFocus();
 	registerUI.setLocationRelativeTo(this);
@@ -186,13 +191,21 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
-
+    /**
+     * Display login UI
+     * 
+     * @param evt click event 
+     */
     private void LoginMenueItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginMenueItemActionPerformed
         loginUI.requestFocus();
 	loginUI.setLocationRelativeTo(this);
         loginUI.setVisible(true);
     }//GEN-LAST:event_LoginMenueItemActionPerformed
-
+    /**
+     * Display UI to list all clothing items for user 
+     * 
+     * @param evt click event
+     */
     private void ViewMyProfileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewMyProfileMenuItemActionPerformed
         viewUI.refreshData();
         viewUI.requestFocus();
@@ -203,11 +216,19 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
     private void accountMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountMenuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_accountMenuActionPerformed
-
+    /**
+     * Exit application
+     * 
+     * @param evt click event 
+     */
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
-
+    /**
+     * Display UI to list all brands
+     * 
+     * @param evt click event 
+     */
     private void viewBrandsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBrandsMenuItemActionPerformed
         brandsUI.refreshData();
 	brandsUI.setLocationRelativeTo(this);
@@ -217,12 +238,19 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
     private void userHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userHelpActionPerformed
         
     }//GEN-LAST:event_userHelpActionPerformed
-
+    /**
+     * Display help UI
+     * 
+     * @param evt click event
+     */
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         HelpDialog help = new HelpDialog(this, true);
 	help.setLocationRelativeTo(help);
 	help.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
+    /**
+     * Enable menu items after logging in 
+     */
     public void enableMenuItems() {
         registerItem.setEnabled(true);
         ViewMyProfileMenuItem.setEnabled(true);

@@ -93,12 +93,17 @@ public class WardrobeDao {
             + "WHERE BrandID = ? ";
             
     private static final String PROP_URL = "jdbc.url";
-    private static final String PROP_USERNAME = "jdbc.username";
-    private static final String PROP_PASSWORD = "jdbc.password";
+ 
 
     private Connection wardrobeConnection;
     private static WardrobeDao instance;
-
+/**
+ * Constructor 
+ * 
+ * loads jdbc properties and retrieves db connection 
+ * 
+ * @throws SQLException thrown if unable to create the connection 
+ */
     private WardrobeDao() throws SQLException {
         Properties props = null;
 
@@ -118,7 +123,13 @@ public class WardrobeDao {
             wardrobeConnection = DriverManager.getConnection(props.getProperty(PROP_URL));
         }
     }
-
+    /**
+     * Retrieve the sole instance of this object 
+     * 
+     * @return DAO instance returned
+     * 
+     * @throws SQLException thrown if unable to create instance 
+     */
     public static WardrobeDao getInstance() throws SQLException {
         if (instance != null) {
             return instance;

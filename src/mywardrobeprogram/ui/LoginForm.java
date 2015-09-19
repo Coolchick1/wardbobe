@@ -15,7 +15,8 @@ import mywardrobeprogram.model.User;
 import mywardrobeprogram.ui.listener.FormWindowListener;
 
 /**
- *
+ * UI to login into wardrobe application
+ * 
  * @author Natalia Luiz
  */
 public class LoginForm extends javax.swing.JFrame {
@@ -126,9 +127,10 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     /**
-     * Action performed method to get the login button working 
+     * Validate all the data has been entered in to UI, retrieve the user if all data entered. 
+     * If user found verify passwords match and if so login user, otherwise display error.
      * 
-     * Validate all the data has been entered in to UI, retrieve the user if all data entered. If user found verify passwords match and if so login user, otherwise display error
+     * @param evt click event 
      */
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String username = usernameTextField.getText();
@@ -157,7 +159,8 @@ public class LoginForm extends javax.swing.JFrame {
             }
 
         } catch (SQLException sqle) {
-            System.err.println("Failed finding user");
+            JOptionPane.showMessageDialog(this, "Failed finding user");
+	    System.err.println("Failed finding user");
             System.err.println(sqle);
         }
 

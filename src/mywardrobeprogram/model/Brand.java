@@ -1,19 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package mywardrobeprogram.model;
 
 /**
- *
+ * Brand entity model 
+ * 
  * @author Natalia Luiz
  */
 public class Brand {
+    /**
+     * Primary key of the brand 
+     */
     private Integer id;
+    /**
+     * name of the brand 
+     */
     private String name;
+    /**
+     * shopping mall the brand can be found at 
+     */
     private String shoppingMall;
+    /**
+     * recommendation of this brand
+     */
     private String recommended;
 
     public Brand() {

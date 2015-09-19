@@ -20,7 +20,8 @@ import mywardrobeprogram.ui.listener.FormWindowListener;
 import mywardrobeprogram.ui.model.ClothingTableModel;
 
 /**
- *
+ * UI to show all clothing items in the users wardrobe
+ * 
  * @author Natalia Luiz
  */
 public class ViewMyWardrobe extends javax.swing.JFrame {
@@ -40,7 +41,9 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
         repaint();
         pack();
     }
-    
+    /**
+     * Retrieving all items of clothing for user 
+     */
     public void refreshData (){
         try {
             List<Clothing> usersWardrobe = WardrobeDao.getInstance().findClothingByUserId(LoginForm.loggedInUser.getId());
@@ -142,7 +145,9 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * Action performed method to get add button working
+     * Displays UI to add new item of clothing
+     * 
+     * @param evt click event
      */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         displayClothingFrame.setPersist(new ClothingAddPersist(), "add");
@@ -153,9 +158,9 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
         refreshData();
     }//GEN-LAST:event_addButtonActionPerformed
      /**
-     * Action performed method to get delete button working
+     * Delete selected item of clothing from table
      * 
-     * @throws SQLException Database unable to delete the clothing item
+     * @param evt click event 
      */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int selectedClothing = jTable1.getSelectedRow();
@@ -172,7 +177,7 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
         
     }//GEN-LAST:event_deleteButtonActionPerformed
      /**
-     * Actin performed to get edit button working
+     * shows UI to edit a selected item of clothing the user selected from the table
      */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         int selectedRow = jTable1.getSelectedRow();
@@ -187,41 +192,6 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
         
         refreshData();
     }//GEN-LAST:event_editButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewMyWardrobe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewMyWardrobe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewMyWardrobe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewMyWardrobe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewMyWardrobe().setVisible(true);
-            }
-        });
-    }
 
     ClothingFrame displayClothingFrame = new ClothingFrame(this);
     

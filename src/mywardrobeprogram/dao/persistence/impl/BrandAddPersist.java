@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package mywardrobeprogram.dao.persistence.impl;
 
 import java.sql.SQLException;
@@ -12,14 +6,21 @@ import mywardrobeprogram.dao.persistence.BrandPersist;
 import mywardrobeprogram.model.Brand;
 
 /**
- *
+ * Persistence object to add a new brand 
+ * 
  * @author Natalia Luiz
  */
 public class BrandAddPersist implements BrandPersist{
 
     public BrandAddPersist() {
     }
-
+/**
+ * Add new brand 
+ * 
+ * @param brand brand persist
+ * 
+ * @throws SQLException thrown if unable to persist 
+ */
     @Override
     public void execute(Brand brand) throws SQLException {
         WardrobeDao.getInstance().addBrand(brand);

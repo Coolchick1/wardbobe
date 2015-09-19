@@ -23,7 +23,8 @@ import mywardrobeprogram.model.Clothing;
 import mywardrobeprogram.ui.listener.FormWindowListener;
 
 /**
- *
+ * UI frame to capture information relating to clothing item to persist 
+ * 
  * @author Natalia Luiz
  */
 public class ClothingFrame extends javax.swing.JDialog {
@@ -43,10 +44,13 @@ public class ClothingFrame extends javax.swing.JDialog {
         repaint();
         pack();
         addWindowListener(new FormWindowListener());
-	getBrands();
+	refreshBrands();
     }
-
-    private void getBrands() {
+    
+    /**
+     * Helper method to refresh brands from database
+     */
+    private void refreshBrands() {
 	try {
 	    List<Brand> brands = WardrobeDao.getInstance().getAllBrands();
 	    
@@ -182,9 +186,10 @@ public class ClothingFrame extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * Action performed method to get the add button working 
-     * 
      * Validates data entered by user into UI. If valid persist to db, otherwise display dialog indicating error
+     * 
+     * @param evt action event
+     * 
      * @throws SQLException Database unable to save item of clothing  
      */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -210,8 +215,13 @@ public class ClothingFrame extends javax.swing.JDialog {
             setVisible(false);
             
         }
-
     }//GEN-LAST:event_addButtonActionPerformed
+
+    /**
+     * validate data captured in UI components 
+     * 
+     * @return true returned if validation successful else false 
+     */
     boolean validateClothingValues() {
         String itemType = itemTypeTxt.getText();
         String size = sizeComboBox.getSelectedItem().toString();
@@ -252,9 +262,9 @@ public class ClothingFrame extends javax.swing.JDialog {
         addButton.setText(persistButtonName);
     }
     /**
-     * Displays newly created brand
+     * Displays clothing item 
      * 
-     * @param displayItem shows newly created brands details
+     * @param displayItem clothing item to display 
      */
     public void display (Clothing displayItem){
         colourTxt.setText(displayItem.getColour());
@@ -267,7 +277,8 @@ public class ClothingFrame extends javax.swing.JDialog {
         
             brandComboBox.setSelectedItem(displayBrand);
         } catch (SQLException sql) {
-            
+            sql.printStackTrace();
+	    JOptionPane.showMessageDialog(this, "Unable to retrieve brand for ID:" +displayItem.getBrandID());
         }
     }
     /**
@@ -279,7 +290,7 @@ public class ClothingFrame extends javax.swing.JDialog {
         sizeComboBox.setSelectedIndex(0);
         styleTxt.setText("");
         clothingID = null;
-	getBrands();
+	refreshBrands();
         brandComboBox.setSelectedIndex(0);
     }
 

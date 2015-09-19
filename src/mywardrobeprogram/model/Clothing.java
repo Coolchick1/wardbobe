@@ -1,22 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package mywardrobeprogram.model;
 
 /**
- *
+ * Clothing entity 
+ * 
  * @author Natalia Luiz
  */
 public class Clothing {
+    /**
+     * Primary key for clothing item
+     */
     private Integer id;
+    /**
+     * the type of clothing item
+     */
     private String type;
+    /**
+     * the size of the clothing item
+     */
     private String size;
+    /**
+     * the colour of the clothing item
+     */
     private String colour;
+    /**
+     * the foreign key to the brand of the clothing item
+     */
     private Integer brandID;
+    /**
+     * the foreign key to the user that this clothing item belongs to 
+     */
     private Integer userID;
+    /**
+     * the style of the clothing item e.g. if jeans could be skinny 
+     */
     private String style;
 
     public Clothing() {

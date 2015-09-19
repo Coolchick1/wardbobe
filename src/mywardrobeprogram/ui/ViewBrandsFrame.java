@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mywardrobeprogram.ui;
 
 import java.sql.SQLException;
@@ -18,7 +14,8 @@ import mywardrobeprogram.ui.listener.FormWindowListener;
 import mywardrobeprogram.ui.model.BrandTableModel;
 
 /**
- *
+ * UI to list all brands in wardrobe
+ * 
  * @author Natalia Luiz
  */
 public class ViewBrandsFrame extends javax.swing.JFrame {
@@ -50,6 +47,8 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
 
             brandsTable.setModel(new BrandTableModel(allBrands));
         } catch (SQLException sqlE) {
+	    sqlE.printStackTrace();
+	    JOptionPane.showMessageDialog(this, "Unable to retrieve brand information to display");
 
         }
 
@@ -148,7 +147,9 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * Sets up BrandFrame to add a new brand
+     * Displays frame to add a new brand to the user's wardrobe 
+     * 
+     * @param evt click event 
      */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         brandFrame.reset();
@@ -158,9 +159,9 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
         refreshData();
     }//GEN-LAST:event_addButtonActionPerformed
     /**
-     * Method to edit a field/fields of a clothing item. Select the row to edit.
+     * Displays frame to edit existing brand.
      * 
-     * Validation check includes a MessageDialog that will pop up informing the user to select a row to edit
+     * Validation check to ensure user has selected a brand in the table.
      */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         int selectedRow = brandsTable.getSelectedRow();
@@ -203,40 +204,6 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_deleteButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewBrandsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewBrandsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewBrandsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewBrandsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewBrandsFrame().setVisible(true);
-            }
-        });
-    }
     private BrandFrame brandFrame;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
