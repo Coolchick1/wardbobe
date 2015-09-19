@@ -144,11 +144,11 @@ public class BrandFrame extends javax.swing.JDialog {
         String shoppingMall = shoppingMallTxt.getText();
 
         if (brandName == null || brandName.length() == 0) {
-            JOptionPane.showInputDialog(this, "Brand name is required ");
+            JOptionPane.showMessageDialog(this, "Brand name is required ");
         } else if (recommended == null || recommended.length() == 0) {
-            JOptionPane.showInputDialog(this, "Recommended field is required ");
+            JOptionPane.showMessageDialog(this, "Recommended field is required ");
         } else if (shoppingMall == null || shoppingMall.length() == 0) {
-            JOptionPane.showInputDialog(this, "Shopping Mall is required ");
+            JOptionPane.showMessageDialog(this, "Shopping Mall is required ");
         } else {
             Brand brand = new Brand();
             brand.setName(brandName);
@@ -159,7 +159,7 @@ public class BrandFrame extends javax.swing.JDialog {
                 persistence.execute(brand);
             } catch (SQLException sqlE) {
                 sqlE.printStackTrace();
-                JOptionPane.showInputDialog(this, "Unable to persist brand ");
+                JOptionPane.showMessageDialog(this, "Unable to persist brand ");
             }
             setVisible(false);
 
