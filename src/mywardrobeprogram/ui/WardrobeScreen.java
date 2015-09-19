@@ -5,50 +5,56 @@
  */
 package mywardrobeprogram.ui;
 
-
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import mywardrobeprogram.dao.WardrobeDao;
 
 /**
  * Wardrobe application entry point.Creates all UIs the system uses
- * 
+ *
  * @author Natalia Luiz
  */
 public class WardrobeScreen extends javax.swing.JFrame implements WindowListener {
 
-    private final RegisterForm registerUI;
-    private final LoginForm loginUI;
-    private final ViewMyWardrobe viewUI;
-    private final ViewBrandsFrame brandsUI;
+    private RegisterForm registerUI;
+    private LoginForm loginUI;
+    private ViewMyWardrobe viewUI;
+    private ViewBrandsFrame brandsUI;
 
     /**
-     * Constructor 
-     * Create UI dialogs 
+     * Constructor Create UI dialogs
      */
     public WardrobeScreen() {
-        initComponents();
+	initComponents();
+	try {
+	    WardrobeDao.getInstance();
+	    registerUI = new RegisterForm();
+	    registerUI.setVisible(false);
+	    loginUI = new LoginForm(this);
+	    loginUI.setVisible(false);
+	    registerItem.setEnabled(true);
+	    viewUI = new ViewMyWardrobe();
+	    viewUI.setVisible(false);
+	    ViewMyProfileMenuItem.setEnabled(false);
+	    brandsUI = new ViewBrandsFrame();
+	    brandsUI.setVisible(false);
+	    wardrobeMenu.setEnabled(false);
 
-        registerUI = new RegisterForm();
-        registerUI.setVisible(false);
-        loginUI = new LoginForm(this);
-        loginUI.setVisible(false);
-        registerItem.setEnabled(true);
-        viewUI = new ViewMyWardrobe();
-        viewUI.setVisible(false);
-        ViewMyProfileMenuItem.setEnabled(false);
-        brandsUI = new ViewBrandsFrame();
-        brandsUI.setVisible(false);
-        wardrobeMenu.setEnabled(false);
+	    this.addWindowListener(this);
 
-        this.addWindowListener(this);
+	    JPanel image = new ImagePanel(new ImageIcon(getClass().getResource("fitted-sliding-wardrobe-pink-white-glass-bedroom-thumb.png")).getImage());
+	    add(image);
 
-        JPanel image = new ImagePanel(new ImageIcon(getClass().getResource("fitted-sliding-wardrobe-pink-white-glass-bedroom-thumb.png")).getImage());
-        add(image);
-
-        repaint();
-        pack();
+	    repaint();
+	    pack();
+	} catch (SQLException sqlE) {
+	    sqlE.printStackTrace();
+	    JOptionPane.showMessageDialog(this, "Unable to create database connection. Is the server running?");
+	}
     }
 
     /**
@@ -179,117 +185,117 @@ public class WardrobeScreen extends javax.swing.JFrame implements WindowListener
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Display register new user frame
-     * 
-     * @param evt click event 
+     *
+     * @param evt click event
      */
     private void registerItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerItemActionPerformed
-        registerUI.requestFocus();
+	registerUI.requestFocus();
 	registerUI.setLocationRelativeTo(this);
-        registerUI.setVisible(true);
+	registerUI.setVisible(true);
     }//GEN-LAST:event_registerItemActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
+	// TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
     /**
      * Display login UI
-     * 
-     * @param evt click event 
+     *
+     * @param evt click event
      */
     private void LoginMenueItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginMenueItemActionPerformed
-        loginUI.requestFocus();
+	loginUI.requestFocus();
 	loginUI.setLocationRelativeTo(this);
-        loginUI.setVisible(true);
+	loginUI.setVisible(true);
     }//GEN-LAST:event_LoginMenueItemActionPerformed
     /**
-     * Display UI to list all clothing items for user 
-     * 
+     * Display UI to list all clothing items for user
+     *
      * @param evt click event
      */
     private void ViewMyProfileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewMyProfileMenuItemActionPerformed
-        viewUI.refreshData();
-        viewUI.requestFocus();
+	viewUI.refreshData();
+	viewUI.requestFocus();
 	viewUI.setLocationRelativeTo(this);
-        viewUI.setVisible(true);
+	viewUI.setVisible(true);
     }//GEN-LAST:event_ViewMyProfileMenuItemActionPerformed
 
     private void accountMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountMenuActionPerformed
-        // TODO add your handling code here:
+	// TODO add your handling code here:
     }//GEN-LAST:event_accountMenuActionPerformed
     /**
      * Exit application
-     * 
-     * @param evt click event 
+     *
+     * @param evt click event
      */
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(0);
+	System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
     /**
      * Display UI to list all brands
-     * 
-     * @param evt click event 
+     *
+     * @param evt click event
      */
     private void viewBrandsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBrandsMenuItemActionPerformed
-        brandsUI.refreshData();
+	brandsUI.refreshData();
 	brandsUI.setLocationRelativeTo(this);
-        brandsUI.setVisible(true);
+	brandsUI.setVisible(true);
     }//GEN-LAST:event_viewBrandsMenuItemActionPerformed
 
     private void userHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userHelpActionPerformed
-        
+
     }//GEN-LAST:event_userHelpActionPerformed
     /**
      * Display help UI
-     * 
+     *
      * @param evt click event
      */
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-        HelpDialog help = new HelpDialog(this, true);
+	HelpDialog help = new HelpDialog(this, true);
 	help.setLocationRelativeTo(help);
 	help.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
     /**
-     * Enable menu items after logging in 
+     * Enable menu items after logging in
      */
     public void enableMenuItems() {
-        registerItem.setEnabled(true);
-        ViewMyProfileMenuItem.setEnabled(true);
-        wardrobeMenu.setEnabled(true);
+	registerItem.setEnabled(true);
+	ViewMyProfileMenuItem.setEnabled(true);
+	wardrobeMenu.setEnabled(true);
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+	/* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WardrobeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WardrobeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WardrobeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WardrobeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+	 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+	 */
+	try {
+	    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+		if ("Nimbus".equals(info.getName())) {
+		    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+		    break;
+		}
+	    }
+	} catch (ClassNotFoundException ex) {
+	    java.util.logging.Logger.getLogger(WardrobeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (InstantiationException ex) {
+	    java.util.logging.Logger.getLogger(WardrobeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (IllegalAccessException ex) {
+	    java.util.logging.Logger.getLogger(WardrobeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+	    java.util.logging.Logger.getLogger(WardrobeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	}
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new WardrobeScreen().setVisible(true);
-            }
-        });
+	/* Create and display the form */
+	java.awt.EventQueue.invokeLater(new Runnable() {
+	    public void run() {
+		new WardrobeScreen().setVisible(true);
+	    }
+	});
     }
 
     @Override
