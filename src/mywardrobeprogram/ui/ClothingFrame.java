@@ -79,7 +79,6 @@ public class ClothingFrame extends javax.swing.JDialog {
         colourLabel = new javax.swing.JLabel();
         brandIDLabel = new javax.swing.JLabel();
         styleLabel = new javax.swing.JLabel();
-        itemTypeTxt = new javax.swing.JTextField();
         colourTxt = new javax.swing.JTextField();
         styleTxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -87,6 +86,7 @@ public class ClothingFrame extends javax.swing.JDialog {
         sizeComboBox = new javax.swing.JComboBox();
         messageLabel = new javax.swing.JLabel();
         brandComboBox = new javax.swing.JComboBox();
+        itemTypeComboBox = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -112,6 +112,13 @@ public class ClothingFrame extends javax.swing.JDialog {
 
         sizeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Extra small", "Small", "Medium", "Large" }));
 
+        itemTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Blouse", "Shirt", "Waistcoat", "Rain jacket", "Jeans", "Trousers", "Leggings", "Shorts", "Skirt", "Stockings", "Suit", "Bow Tie", "Blazer", "Coat", "Jacket", "Jumper", "Hoody", "Cardigan\t", "Dungarees", "Overalls", "Dress", "Gloves", "PJs", "Sweatshirt", "Sweatpants", "Boxers", "Bra", "Scarf", "Shawl", "Sunglasses", "Swimming costume", "Hair Accessory", "Hat", "Shoes", " ", " ", " ", " ", " ", " ", " ", " " }));
+        itemTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemTypeComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,24 +134,22 @@ public class ClothingFrame extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(styleLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(brandIDLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(colourLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(sizeLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(209, 209, 209)
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(addButton))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(styleLabel)
+                                            .addComponent(brandIDLabel)
+                                            .addComponent(colourLabel)
+                                            .addComponent(sizeLabel)
+                                            .addComponent(itemTypeLabel))
+                                        .addGap(189, 189, 189)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(brandComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(sizeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(colourTxt)
-                                            .addComponent(styleTxt, javax.swing.GroupLayout.Alignment.TRAILING)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(itemTypeLabel)
-                                        .addGap(189, 189, 189)
-                                        .addComponent(itemTypeTxt))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(addButton)))
+                                            .addComponent(styleTxt, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(itemTypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addGap(76, 76, 76)))
                         .addGap(115, 115, 115))
                     .addGroup(layout.createSequentialGroup()
@@ -156,10 +161,10 @@ public class ClothingFrame extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(itemTypeLabel)
-                    .addComponent(itemTypeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(itemTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sizeLabel)
@@ -178,7 +183,7 @@ public class ClothingFrame extends javax.swing.JDialog {
                     .addComponent(styleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(messageLabel)
                 .addGap(131, 131, 131))
         );
@@ -202,7 +207,7 @@ public class ClothingFrame extends javax.swing.JDialog {
             newItem.setSize(sizeComboBox.getSelectedItem().toString());
             newItem.setStyle(styleTxt.getText());
             newItem.setColour(colourTxt.getText());
-            newItem.setType(itemTypeTxt.getText());
+            newItem.setType((String)itemTypeComboBox.getSelectedItem());
             newItem.setUserID(LoginForm.loggedInUser.getId());
             newItem.setId(clothingID);
             
@@ -217,13 +222,17 @@ public class ClothingFrame extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
+    private void itemTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTypeComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemTypeComboBoxActionPerformed
+
     /**
      * validate data captured in UI components 
      * 
      * @return true returned if validation successful else false 
      */
     boolean validateClothingValues() {
-        String itemType = itemTypeTxt.getText();
+        String itemType = (String)itemTypeComboBox.getSelectedItem();
         String size = sizeComboBox.getSelectedItem().toString();
         String style = styleTxt.getText();
         String colour = colourTxt.getText();
@@ -231,7 +240,7 @@ public class ClothingFrame extends javax.swing.JDialog {
         boolean valid = true;
 
         Object[][] values = {
-            {itemType, itemTypeTxt},
+            {itemType, itemTypeComboBox},
             {size, sizeComboBox},
             {style, styleTxt},
             {colour, colourTxt}
@@ -268,7 +277,7 @@ public class ClothingFrame extends javax.swing.JDialog {
      */
     public void display (Clothing displayItem){
         colourTxt.setText(displayItem.getColour());
-        itemTypeTxt.setText (displayItem.getType());
+        itemTypeComboBox.setSelectedItem(displayItem.getType());
         sizeComboBox.setSelectedItem(displayItem.getSize());
         styleTxt.setText(displayItem.getStyle());
         clothingID = displayItem.getId();
@@ -286,7 +295,7 @@ public class ClothingFrame extends javax.swing.JDialog {
      */
     public void reset (){
          colourTxt.setText("");
-        itemTypeTxt.setText("");
+        itemTypeComboBox.setSelectedIndex(0);
         sizeComboBox.setSelectedIndex(0);
         styleTxt.setText("");
         clothingID = null;
@@ -300,8 +309,8 @@ public class ClothingFrame extends javax.swing.JDialog {
     private javax.swing.JLabel brandIDLabel;
     private javax.swing.JLabel colourLabel;
     private javax.swing.JTextField colourTxt;
+    private javax.swing.JComboBox itemTypeComboBox;
     private javax.swing.JLabel itemTypeLabel;
-    private javax.swing.JTextField itemTypeTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel messageLabel;
     private javax.swing.JComboBox sizeComboBox;
