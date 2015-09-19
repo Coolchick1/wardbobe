@@ -173,7 +173,7 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Unable to delete item");
             }
 	}else {
-		    JOptionPane.showMessageDialog(this, "Select a row to edit");
+		    JOptionPane.showMessageDialog(this, "Select a row to delete");
 		    }
             
         
