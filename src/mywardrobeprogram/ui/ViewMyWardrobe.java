@@ -113,18 +113,17 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(addButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteButton)
+                        .addGap(0, 166, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(addButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(deleteButton)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(166, 166, 166)))
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -167,6 +166,9 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
         if (selectedClothing != -1){
             ClothingTableModel model = (ClothingTableModel)jTable1.getModel();
             Clothing selected = model.getSelected(selectedClothing);
+	}else {
+		    JOptionPane.showMessageDialog(this, "Select a row to edit");
+		    }
             try {
                 WardrobeDao.getInstance().deleteClothingByID(selected.getId());
                 refreshData();
@@ -181,16 +183,23 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
      */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         int selectedRow = jTable1.getSelectedRow();
-        ClothingTableModel model = (ClothingTableModel)jTable1.getModel();
-        Clothing selectedItem = model.getSelected(selectedRow);
+	if(selectedRow !=-1){
+	    ClothingTableModel model = (ClothingTableModel)jTable1.getModel();
+	    Clothing selectedItem = model.getSelected(selectedRow);
         
-        displayClothingFrame.setPersist(new ClothingUpdatePersist(), "update");
-	displayClothingFrame.reset();
-        displayClothingFrame.display(selectedItem);
-	displayClothingFrame.setLocationRelativeTo(this);
-        displayClothingFrame.setVisible(true);
+	     displayClothingFrame.setPersist(new ClothingUpdatePersist(), "update");
+	     displayClothingFrame.reset();
+	     displayClothingFrame.display(selectedItem);
+	     displayClothingFrame.setLocationRelativeTo(this);
+	     displayClothingFrame.setVisible(true);
+	     
+	      refreshData();
+	}else {
+	    JOptionPane.showMessageDialog(this, "Select a row to edit");
+	}
         
-        refreshData();
+        
+       
     }//GEN-LAST:event_editButtonActionPerformed
 
     ClothingFrame displayClothingFrame = new ClothingFrame(this);
