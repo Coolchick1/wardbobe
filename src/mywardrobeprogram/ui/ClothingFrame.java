@@ -6,6 +6,7 @@
 package mywardrobeprogram.ui;
 
 import java.awt.Frame;
+
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -14,8 +15,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+
 import mywardrobeprogram.dao.WardrobeDao;
 import mywardrobeprogram.dao.persistence.ClothingPersist;
 import mywardrobeprogram.model.Brand;
@@ -43,18 +43,22 @@ public class ClothingFrame extends javax.swing.JDialog {
         repaint();
         pack();
         addWindowListener(new FormWindowListener());
-        try {
-            List<Brand> brands = WardrobeDao.getInstance().getAllBrands();
+	getBrands();
+    }
 
-            DefaultComboBoxModel model = new DefaultComboBoxModel();
-            for (Brand currentBrand : brands) {
-                model.addElement(currentBrand);
-            }
-
-            brandComboBox.setModel(model);
-        } catch (SQLException sqlE) {
-            JOptionPane.showMessageDialog(this, "Unable to retrieve brands from the db.");
-        }
+    private void getBrands() {
+	try {
+	    List<Brand> brands = WardrobeDao.getInstance().getAllBrands();
+	    
+	    DefaultComboBoxModel model = new DefaultComboBoxModel();
+	    for (Brand currentBrand : brands) {
+		model.addElement(currentBrand);
+	    }
+	    
+	    brandComboBox.setModel(model);
+	} catch (SQLException sqlE) {
+	    JOptionPane.showMessageDialog(this, "Unable to retrieve brands from the db.");
+	}
     }
 
     /**
@@ -267,7 +271,7 @@ public class ClothingFrame extends javax.swing.JDialog {
         }
     }
     /**
-     * 
+     * Reinitialize the UI component to remove previously entered data 
      */
     public void reset (){
          colourTxt.setText("");
@@ -275,6 +279,7 @@ public class ClothingFrame extends javax.swing.JDialog {
         sizeComboBox.setSelectedIndex(0);
         styleTxt.setText("");
         clothingID = null;
+	getBrands();
         brandComboBox.setSelectedIndex(0);
     }
 
