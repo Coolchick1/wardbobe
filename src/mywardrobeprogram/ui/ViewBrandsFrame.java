@@ -198,6 +198,7 @@ public class ViewBrandsFrame extends javax.swing.JFrame {
 
             } catch (SQLException sql) {
                 sql.printStackTrace();
+		JOptionPane.showMessageDialog(this, "Select a row to delete");
             }
 
         }
