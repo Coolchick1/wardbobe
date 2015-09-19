@@ -166,19 +166,21 @@ public class ViewMyWardrobe extends javax.swing.JFrame {
         if (selectedClothing != -1){
             ClothingTableModel model = (ClothingTableModel)jTable1.getModel();
             Clothing selected = model.getSelected(selectedClothing);
-	}else {
-		    JOptionPane.showMessageDialog(this, "Select a row to edit");
-		    }
-            try {
+	    try {
                 WardrobeDao.getInstance().deleteClothingByID(selected.getId());
                 refreshData();
             }catch (SQLException sql){
                 JOptionPane.showMessageDialog(this, "Unable to delete item");
             }
-        }
+	}else {
+		    JOptionPane.showMessageDialog(this, "Select a row to edit");
+		    }
+            
+        
         
     }//GEN-LAST:event_deleteButtonActionPerformed
-     /**
+     
+/**
      * shows UI to edit a selected item of clothing the user selected from the table
      */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
