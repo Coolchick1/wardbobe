@@ -112,7 +112,7 @@ public class ClothingFrame extends javax.swing.JDialog {
 
         sizeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Extra small", "Small", "Medium", "Large" }));
 
-        itemTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Blouse", "Shirt", "Waistcoat", "Rain jacket", "Jeans", "Trousers", "Leggings", "Shorts", "Skirt", "Stockings", "Suit", "Bow Tie", "Blazer", "Coat", "Jacket", "Jumper", "Hoody", "Cardigan\t", "Dungarees", "Overalls", "Dress", "Gloves", "PJs", "Sweatshirt", "Sweatpants", "Boxers", "Bra", "Scarf", "Shawl", "Sunglasses", "Swimming costume", "Hair Accessory", "Hat", "Shoes", " ", " ", " ", " ", " ", " ", " ", " " }));
+        itemTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Blazer", "Blouse", "Bow Tie", "Boxers", "Bra", "Cardigan", "Coat", "Dress", "Dungarees", "Gloves", "Hair Accessory", "Hat", "Hoody", "Jacket", "Jeans", "Jumper", "Leggings", "Overalls", "PJs", "Scarf", "Shawl", "Shirt", "Shoes", "Shorts", "Skirt", "Stockings", "Suit", "Sunglasses", "Sweatpants", "Sweatshirt", "Swimming costume", "Trousers", "Waistcoat" }));
         itemTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemTypeComboBoxActionPerformed(evt);
